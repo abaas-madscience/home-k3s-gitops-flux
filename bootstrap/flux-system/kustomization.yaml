@@ -5,3 +5,4 @@ resources:
   - ../../clusters/lab/cert-manager-app-kustomization.yaml
   - ../../clusters/lab/metallb-crds-kustomization.yaml
   - ../../clusters/lab/lab-kustomization.yaml
+  - ../../clusters/lab/metallb-kustomization.yaml
