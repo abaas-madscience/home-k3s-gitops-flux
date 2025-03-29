@@ -5,3 +5,4 @@ resources:
   - cert-manager-app-kustomization.yaml
   - ../../infrastructure/metallb
   - ../../infrastructure/traefik
+  - ../../infrastructure/rancher
