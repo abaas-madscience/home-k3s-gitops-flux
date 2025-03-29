@@ -61,3 +61,14 @@ Go to your GitHub repo → Settings → Deploy keys → Add deploy key:
     ```
     alias fluxdebug='k9s -n flux-system'
     ```
+
+
+    CURLPOD:
+    kubectl run curlpod --rm -it --image=curlimages/curl --restart=Never -- sh
+
+
+
+    Grafana
+    VM
+    LOKI
+    
