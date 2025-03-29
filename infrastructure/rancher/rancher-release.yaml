@@ -8,10 +8,11 @@ spec:
   targetNamespace: cattle-system
   install:
     createNamespace: true
+    disableOpenAPIValidation: true
   chart:
     spec:
       chart: rancher
-      version: 2.8.5
+      version: 2.10.3
       sourceRef:
         kind: HelmRepository
         name: rancher
