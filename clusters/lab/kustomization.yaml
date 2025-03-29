@@ -7,3 +7,4 @@ resources:
   - ../../infrastructure/metallb
   - ../../infrastructure/traefik
   - ../../infrastructure/rancher
+  - whoami-kustomization.yaml

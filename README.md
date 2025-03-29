@@ -41,7 +41,23 @@ Go to your GitHub repo → Settings → Deploy keys → Add deploy key:
     flux get kustomizations
     flux get kustomizations -A -w
 
-    
 
     # Reconcile the enitre cluster
     flux reconcile kustomization flux-system --with-source
+
+    # Get Helm Sources
+    flux get sources helm rancher-dev -n flux-system
+    flux get helmreleases -n cattle-system
+    flux logs --level=error --kind=HelmRelease --name=rancher -n cattle-system
+
+
+    Using tools 
+    ```
+    chmod +x flux-watch.sh
+    ./flux-watch.sh my-app my-namespace helmrelease
+
+    ```
+
+    ```
+    alias fluxdebug='k9s -n flux-system'
+    ```
