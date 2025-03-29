@@ -17,7 +17,6 @@ spec:
         kind: HelmRepository
         name: rancher
         namespace: flux-system
-      kubeVersion: "1.28.0"
   values:
     hostname: rancher.lab.local
     ingress:
