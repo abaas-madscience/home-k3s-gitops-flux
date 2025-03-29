@@ -38,3 +38,5 @@ Go to your GitHub repo → Settings → Deploy keys → Add deploy key:
 
     CHECK LOGS
     kubectl logs -n flux-system deploy/kustomize-controller -f
+    flux get kustomizations
+    
