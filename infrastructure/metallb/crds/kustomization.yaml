@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - ipaddresspool.yaml
   - l2advertisements.yaml
-  - bgppeers.yaml  # optiona
