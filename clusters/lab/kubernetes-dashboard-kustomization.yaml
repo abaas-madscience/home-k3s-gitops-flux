@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m
-  path: ./apps/services/kube-db-test
+  path: ./apps/services/kubernetes-dashboard
   prune: true
   sourceRef:
     kind: GitRepository
