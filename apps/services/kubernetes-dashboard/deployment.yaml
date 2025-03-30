@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: kubernetes-dashboard
-  namespace: flux-system
+  namespace: kubernetes-dashboard  
 spec:
   interval: 5m
   targetNamespace: kubernetes-dashboard
@@ -11,7 +11,7 @@ spec:
   chart:
     spec:
       chart: kubernetes-dashboard
-      version: 7.11.0
+      version: 7.11.1 
       sourceRef:
         kind: HelmRepository
         name: kubernetes-dashboard
@@ -21,5 +21,5 @@ spec:
     ingress:
       enabled: true
       ingressClassName: traefik
-      tls:
-        source: self-signed
+    tls:
+      source: self-signed
