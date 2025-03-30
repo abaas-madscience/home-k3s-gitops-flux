@@ -8,7 +8,6 @@ spec:
   targetNamespace: kubernetes-dashboard
   install:
     createNamespace: true
-    disableOpenAPIValidation: true
   chart:
     spec:
       chart: kubernetes-dashboard  # Just use the chart name, not the repo/chart-name format
