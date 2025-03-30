@@ -16,19 +16,3 @@ spec:
         kind: HelmRepository
         name: kubernetes-dashboard
         namespace: kubernetes-dashboard 
-  values:
-    ingress:
-      enabled: true
-      ingressClassName: traefik
-      hosts:
-        - host: dashboard.svc.lab.local
-          paths:
-            - path: /
-              pathType: Prefix
-      service:
-        name: kubernetes-dashboard-kubernetes-dashboard-web  
-        port: 8000  
-      tls:
-        - secretName: dashboard-tls
-          hosts:
-            - dashboard.svc.lab.local

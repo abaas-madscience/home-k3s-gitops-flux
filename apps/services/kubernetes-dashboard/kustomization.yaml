@@ -4,3 +4,4 @@ resources:
   - namespace.yaml
   - helm-repo.yaml
   - deployment.yaml
+  - ingress.yaml
