@@ -1,0 +1,10 @@
+namespace: monitoring
+loki:
+  persistence:
+    enabled: true
+    size: 10Gi
+    storageClassName: default
+  service:
+    type: ClusterIP
+  ingester:
+    replicaCount: 1
