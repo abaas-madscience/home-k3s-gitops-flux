@@ -17,7 +17,7 @@ spec:
         name: kubernetes-dashboard
         namespace: kubernetes-dashboard 
   values:
-    hostname: dashboard.lab.local
+    hostname: dashboard.svc.lab.local
     ingress:
       enabled: true
       ingressClassName: traefik
