@@ -29,3 +29,12 @@ spec:
         enabled: false
       containerSecurityContext:
         enabled: false
+    promtail:
+      podSecurityPolicy:
+        enabled: false
+    grafana:
+      podSecurityPolicy:
+        enabled: false
+    prometheus:
+      podSecurityPolicy:
+        enabled: false    
