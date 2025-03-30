@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: home-k3s-gitops-flux
+  namespace: flux-system
+spec:
+  interval: 1m
+  url: https://github.com/abaas-madscience/home-k3s-gitops-flux
+  ref:
+    branch: main
