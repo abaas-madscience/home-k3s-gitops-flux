@@ -76,6 +76,12 @@ flux logs --level=error --kind=HelmRelease --name=rancher -n cattle-system
 
 ## 🛠️ Tools
 
+### Flux validate charts
+```bash
+tools/flux-validate-chart.sh bitnami sealed-secrets
+
+```
+
 ### Flux Watch Script
 ```bash
 chmod +x flux-watch.sh
