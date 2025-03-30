@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: loki-stack
-      version: 2.4.0  # Use an older version of the Loki stack
+      version: 2.4.0  # Use the stable chart version
       sourceRef:
         kind: HelmRepository
         name: grafana
@@ -25,3 +25,7 @@ spec:
         type: ClusterIP
       ingester:
         replicaCount: 1
+      podSecurityPolicy:
+        enabled: false  # Disable PodSecurityPolicy
+      securityContext:
+        enabled: false  # Disable security context if set by the chart
