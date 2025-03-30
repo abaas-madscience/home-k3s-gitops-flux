@@ -1,21 +1,21 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: kubedbtest
+  name: kubernetes-dashboard
   namespace: flux-system
 spec:
   interval: 5m
-  targetNamespace: kubedbtest
+  targetNamespace: kubernetes-dashboard
   install:
     createNamespace: true
     disableOpenAPIValidation: true
   chart:
     spec:
-      chart: kubedbtest
+      chart: kubernetes-dashboard
       version: 7.11.0
       sourceRef:
         kind: HelmRepository
-        name: kubedbtest
+        name: kubedbtest  # The repo name from the HelmRepository definition
         namespace: flux-system
   values:
     hostname: dashboard.lab.local
