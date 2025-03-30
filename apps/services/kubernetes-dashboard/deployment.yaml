@@ -5,6 +5,7 @@ metadata:
   namespace: kubernetes-dashboard
 spec:
   interval: 5m
+  suspend: true # NOT USING IT, HERE FOR EXAMPLE
   targetNamespace: kubernetes-dashboard
   install:
     createNamespace: true
