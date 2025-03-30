@@ -8,12 +8,12 @@ spec:
   chart:
     spec:
       chart: loki-stack
-      version: 2.5.0
+      version: 2.4.0  # Use an older version of the Loki stack
       sourceRef:
         kind: HelmRepository
         name: grafana
-        namespace: monitoring
-  interval: 5m  
+        namespace: flux-system
+  interval: 10m
   values:
     namespace: monitoring
     loki:
@@ -25,5 +25,3 @@ spec:
         type: ClusterIP
       ingester:
         replicaCount: 1
-        podSecurityPolicy:
-          enabled: false  # Disable PodSecurityPolicy creation
