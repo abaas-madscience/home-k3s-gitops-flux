@@ -8,11 +8,11 @@ spec:
   chart:
     spec:
       chart: loki-stack
-      version: 2.9.3
+      version: 2.9.9
       sourceRef:
         kind: HelmRepository
         name: grafana
-        namespace: flux-system
+        namespace: monitoring
   interval: 10m
   values:
     namespace: monitoring
