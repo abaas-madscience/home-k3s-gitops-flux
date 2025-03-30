@@ -5,8 +5,8 @@ metadata:
   namespace: renovate
 spec:
   schedule: "0 6 * * *"  # every day at 06:00 UTC
-  successfulJobsHistoryLimit: 1
-  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1  # Keep only the last successful job
+  failedJobsHistoryLimit: 1      # Keep only the last failed job
   jobTemplate:
     spec:
       template:
