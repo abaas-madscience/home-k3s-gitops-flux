@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`echo.lab.local`)
+    - match: Host(`echo.svc.lab.local`)
       kind: Rule
       services:
         - name: http-echo
