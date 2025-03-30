@@ -1,91 +1,168 @@
-# home-k3s-gitops-flux
-Gitops repo for using flux
+# 🚀 home-k3s-gitops-flux
 
+Welcome to the **GitOps** repository for managing your Kubernetes cluster with **Flux**! 🎉
 
-Howto use flux
+This is a major work in progress and it changes over time.
 
-Create the structure as what I have now
+For now take what you can out of it. it is my living and breathing home network :-)
 
-```
+---
 
-```
+## 📂 Repository Structure
 
-Then:
-
-```
-ssh-keygen -t ed25519 -C "flux@k3s" -f ~/.ssh/flux-ed25519 -N ""
+Here's how the repository is organized:
 
 ```
-
-
-Now you'll have:
-
+.
+├── apps
+│   ├── services
+│   │   ├── http-echo
+│   │   ├── renovate
+│   │   └── whoami
+│   └── system
+├── bootstrap
+│   └── flux-system
+├── clusters
+│   └── lab
+├── infrastructure
+│   ├── cert-manager
+│   ├── metallb
+│   ├── rancher
+│   ├── sealed-secrets
+│   └── traefik
+├── tools
+├── kustomization.yaml
+├── LICENSE
+└── README.md
 ```
-    ~/.ssh/flux-ed25519 (private key)
-    ~/.ssh/flux-ed25519.pub (public key)
+
+---
+
+## 🛠️ Setting Up Flux
+
+TODO: This is done through ansible after terraforming the cluster
+Check out my other repos for that in the meantime
+
+### 1️⃣ Generate PAT Token in Github
+
+Here: https://github.com/settings/tokens
+
+## 🔍 Debugging & Logs
+
+### Check Logs
+```bash
+kubectl logs -n flux-system deploy/kustomize-controller -f
 ```
 
-Go to your GitHub repo → Settings → Deploy keys → Add deploy key:
+### Get Kustomizations
+```bash
+flux get kustomizations
+flux get kustomizations -A -w
+```
 
-    Title: flux-ed25519
+### Reconcile the Entire Cluster
+```bash
+flux reconcile kustomization flux-system --with-source
+```
 
-    Key: Paste contents of flux-ed25519.pub
+### Helm Sources
+```bash
+flux get sources helm rancher-dev -n flux-system
+flux get helmreleases -n cattle-system
+flux logs --level=error --kind=HelmRelease --name=rancher -n cattle-system
+```
 
-    ✅ Check "Allow write access"
+---
 
+## 🛠️ Tools
 
-    Or use my abisble playbook
+### Flux Watch Script
+```bash
+chmod +x flux-watch.sh
+./flux-watch.sh my-app my-namespace helmrelease
+```
 
-    CHECK LOGS
-    kubectl logs -n flux-system deploy/kustomize-controller -f
-    flux get kustomizations
-    flux get kustomizations -A -w
+### Alias for Debugging
+```bash
+alias fluxdebug='k9s -n flux-system'
+```
 
+### Curl Pod for testing
+```bash
+kubectl run curlpod --rm -it --image=curlimages/curl --restart=Never -- sh
+```
 
-    # Reconcile the enitre cluster
-    flux reconcile kustomization flux-system --with-source
+---
 
-    # Get Helm Sources
-    flux get sources helm rancher-dev -n flux-system
-    flux get helmreleases -n cattle-system
-    flux logs --level=error --kind=HelmRelease --name=rancher -n cattle-system
+## 🔐 Managing Secrets
 
-
-    Using tools 
-    ```
-    chmod +x flux-watch.sh
-    ./flux-watch.sh my-app my-namespace helmrelease
-
-    ```
-
-    ```
-    alias fluxdebug='k9s -n flux-system'
-    ```
-
-
-    CURLPOD:
-    kubectl run curlpod --rm -it --image=curlimages/curl --restart=Never -- sh
-
-
-
-    Grafana
-    VM
-    LOKI
-    
-
-    Manging secrets:
-
+### Create a Secret
+```bash
 kubectl create secret generic renovate-token \
   --from-literal=token=ghp_...your_new_pat_here... \
   --namespace=renovate \
   --dry-run=client -o yaml > renovate-token.yaml
+```
 
-
-then seal it
-
+### Seal the Secret
+```bash
 kubeseal \
   --controller-name=sealed-secrets-controller \
   --controller-namespace=kube-system \
   --format=yaml < renovate-token.yaml > apps/services/renovate/secret.yaml
+```
 
-Commit & Push
+Or use the script:
+```bash
+tools/pat_token.sh
+```
+
+---
+
+## 🧹 Pre-Commit Hook
+
+Add the following pre-commit hook to `.git/hooks/pre-commit`:
+
+```bash
+#!/bin/bash
+
+echo "🔍 Checking for unsealed secrets and sensitive content..."
+
+# 1. Block unsealed secret filenames
+if git diff --cached --name-only | grep -E '.*secret.*\.ya?ml' | grep -v 'sealed'; then
+  echo "❌ Unsealed secret file detected in staged files!"
+  echo "👉 Use SealedSecrets before committing."
+  exit 1
+fi
+
+# 2. Check for dangerous content in staged lines
+MATCHES=$(git diff --cached | grep -Ei 'token:|password:|secret:' | grep -vE '^\+?\s*#')
+
+if [[ -n "$MATCHES" ]]; then
+  echo "❌ Potential sensitive content detected in staged changes:"
+  echo "$MATCHES"
+  echo "👉 Remove or seal before committing."
+  exit 1
+fi
+
+echo "✅ All clear. Commit allowed."
+```
+
+Make it executable:
+```bash
+chmod +x .git/hooks/pre-commit
+```
+
+---
+
+## 📊 Monitoring
+
+- **Grafana** 📈
+- **VictoriaMetrics (VM)** 📊
+- **Loki** 🔍
+
+---
+
+🎉 **Happy GitOps-ing!** 🚀
+
+
