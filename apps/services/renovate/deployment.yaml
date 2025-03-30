@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: renovate
+  namespace: renovate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: renovate
+  template:
+    metadata:
+      labels:
+        app: renovate
+    spec:
+      containers:
+        - name: renovate
+          image: ghcr.io/renovatebot/renovate:latest
+          args:
+            - "--platform=github"
+            - "--dry-run=false"
+            - "--repositories=abaas-madscience/home-k3s-gitops-flux"
+          env:
+            - name: RENOVATE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: renovate-token
+                  key: token
