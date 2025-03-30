@@ -98,6 +98,15 @@ flux get sources helm rancher-dev -n flux-system
 flux get helmreleases -n cattle-system
 flux logs --level=error --kind=HelmRelease --name=rancher -n cattle-system
 ```
+### See Helm repos in all namespace
+```
+kubectl get helmrepositories --all-namespaces
+```
+
+## Check on an installation
+```
+kubectl describe helmrelease loki -n monitoring
+```
 
 ---
 

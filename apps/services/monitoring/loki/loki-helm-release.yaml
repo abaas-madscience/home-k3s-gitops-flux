@@ -25,3 +25,5 @@ spec:
         type: ClusterIP
       ingester:
         replicaCount: 1
+        podSecurityPolicy:
+          enabled: false  # Disable PodSecurityPolicy creation
