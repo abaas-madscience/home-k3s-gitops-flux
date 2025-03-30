@@ -9,5 +9,6 @@ resources:
   - ../../infrastructure/rancher
   - whoami-kustomization.yaml
   - http-echo-kustomization.yaml
+  - sealed-secrets-kustomization.yaml
   - ../../infrastructure/sealed-secrets
   - apps-services-renovate-kustomization.yaml
