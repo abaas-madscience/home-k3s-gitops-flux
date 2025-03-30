@@ -5,6 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
+  suspend: true # SUSPENDED DUE TO VERSION ISSUES
   targetNamespace: cattle-system
   install:
     createNamespace: true
