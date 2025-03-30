@@ -4,4 +4,4 @@ resources:
   - namespace.yaml
   - loki/loki-helm-repo.yaml
   - loki/loki-helm-release.yaml
-  - loki/loki-values.yaml
+  - loki/loki-values-configmap.yaml
