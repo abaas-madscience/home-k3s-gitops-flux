@@ -10,11 +10,11 @@ spec:
     createNamespace: true
   chart:
     spec:
-      chart: kubernetes-dashboard  # Just use the chart name, not the repo/chart-name format
+      chart: kubernetes-dashboard
       version: 7.11.0
       sourceRef:
         kind: HelmRepository
-        name: kubernetes-dashboard  # Name of the HelmRepository resource (not the URL)
+        name: kubernetes-dashboard
         namespace: flux-system
   values:
     hostname: dashboard.lab.local
