@@ -66,6 +66,11 @@ kubectl get deployments -n flux-system
 kubectl -n flux-system logs deployment/<flux-controller-name>
 ```
 
+### Check Service and IP's
+```bash
+kubectl get svc -n kubernetes-dashboard
+```
+
 ### Check Logs
 ```bash
 kubectl logs -n flux-system deploy/kustomize-controller -f
