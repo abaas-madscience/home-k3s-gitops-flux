@@ -16,7 +16,7 @@ kubectl create secret generic "$SECRET_NAME" \
 
 echo "🧪 Sealing secret with kubeseal..."
 kubeseal \
-  --controller-name=sealed-secrets-controller \
+  --controller-name=kube-system-sealed-secrets \
   --controller-namespace=kube-system \
   --format=yaml < tmp-secret.yaml > "$SEALED_FILE"
 
