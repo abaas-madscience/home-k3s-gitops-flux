@@ -11,11 +11,11 @@ spec:
     disableOpenAPIValidation: true
   chart:
     spec:
-      chart: kubernetes-dashboard
+      chart: kubernetes-dashboard  # Just use the chart name, not the repo/chart-name format
       version: 7.11.0
       sourceRef:
         kind: HelmRepository
-        name: kubedbtest  # The repo name from the HelmRepository definition
+        name: kubedbtest  # Name of the HelmRepository resource (not the URL)
         namespace: flux-system
   values:
     hostname: dashboard.lab.local

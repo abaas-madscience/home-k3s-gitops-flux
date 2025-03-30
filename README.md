@@ -49,6 +49,23 @@ Here: https://github.com/settings/tokens
 
 ## 🔍 Debugging & Logs
 
+### Check charts
+kubectl -n flux-system logs deployment/flux-controller
+
+
+2. Check HelmRelease Status
+```
+kubectl get helmrelease kube-db-test/kubernetes-dashboard -n flux-system -o yaml
+```
+
+
+3. Check logs of controller like helm-controller
+
+```
+kubectl get deployments -n flux-system
+kubectl -n flux-system logs deployment/<flux-controller-name>
+```
+
 ### Check Logs
 ```bash
 kubectl logs -n flux-system deploy/kustomize-controller -f
@@ -101,6 +118,11 @@ alias fluxdebug='k9s -n flux-system'
 ### Curl Pod for testing
 ```bash
 kubectl run curlpod --rm -it --image=curlimages/curl --restart=Never -- sh
+```
+
+### Or BusyBox Pod for testing
+```bash
+kubectl run -it --rm --restart=Never busybox -n flux-system --image=busybox
 ```
 
 ---
