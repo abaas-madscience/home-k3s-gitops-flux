@@ -13,6 +13,7 @@ spec:
         kind: HelmRepository
         name: grafana
         namespace: flux-system
+  interval: 5m  
   values:
     namespace: monitoring
     loki:
