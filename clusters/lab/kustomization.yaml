@@ -13,4 +13,4 @@ resources:
   - ../../infrastructure/sealed-secrets
   - apps-services-renovate-kustomization.yaml
   - kubernetes-dashboard-kustomization.yaml
-  - apps-services-renovate-kustomization.yaml
+  - apps-monitoring-kustomization.yaml
