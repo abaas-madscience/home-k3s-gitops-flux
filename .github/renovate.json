@@ -1,7 +1,7 @@
 {
   "extends": ["config:base"],
-  "enabledManagers": ["helm"],
-  "helm": {
+  "enabledManagers": ["helm-values"],
+  "helm-values": {
     "fileMatch": [".*\\.yaml$"]
   }
 }
