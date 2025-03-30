@@ -54,6 +54,11 @@ Here: https://github.com/settings/tokens
 kubectl logs -n flux-system deploy/kustomize-controller -f
 ```
 
+### Check renovate Logs
+``` bash
+kubectl logs -n renovate deploy/renovate
+```
+
 ### Get Kustomizations
 ```bash
 flux get kustomizations
