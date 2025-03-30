@@ -13,7 +13,14 @@ spec:
         kind: HelmRepository
         name: grafana
         namespace: flux-system
-  valuesFrom:
-    - configMapKeyRef:
-        name: loki-values
-        key: values.yaml
+  values:
+    namespace: monitoring
+    loki:
+      persistence:
+        enabled: true
+        size: 10Gi
+        storageClassName: default
+      service:
+        type: ClusterIP
+      ingester:
+        replicaCount: 1
