@@ -10,5 +10,5 @@ spec:
     - match: Host(`flux.lab.local`)
       kind: Rule
       services:
-        - name: flux-capacitor
+        - name: capacitor
           port: 80
