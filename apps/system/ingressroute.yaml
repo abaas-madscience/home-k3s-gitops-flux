@@ -1,13 +1,14 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: http-echo
+  name: flux-capacitor
+  namespace: flux-capacitor
 spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`echo.svc.lab.local`)
+    - match: Host(`flux.svc.lab.local`)
       kind: Rule
       services:
-        - name: http-echo
+        - name: flux-capacitor
           port: 80
