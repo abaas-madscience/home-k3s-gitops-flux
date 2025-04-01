@@ -2,7 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: flux-capacitor
-  namespace: flux-capacitor
+  namespace: flux-system
 spec:
   entryPoints:
     - web
