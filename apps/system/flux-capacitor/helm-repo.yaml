@@ -1,8 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: flux-capacitor
-  namespace: flux-capacitor
-spec:
-  interval: 5m
-  url: https://fluxcd-community.github.io/flux-capacitor/
