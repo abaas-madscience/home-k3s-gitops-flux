@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`flux.svc.lab.local`)
+    - match: Host(`flux.lab.local`)
       kind: Rule
       services:
         - name: flux-capacitor
