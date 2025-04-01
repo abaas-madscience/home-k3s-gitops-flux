@@ -5,4 +5,4 @@ metadata:
   namespace: flux-capacitor
 spec:
   interval: 5m
-  url: https://flux-subsystem.github.io/flux-capacitor
+  url: https://fluxcd-community.github.io/flux-capacitor/
