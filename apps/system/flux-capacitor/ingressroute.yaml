@@ -11,4 +11,4 @@ spec:
       kind: Rule
       services:
         - name: capacitor
-          port: 80
+          port: 9000
