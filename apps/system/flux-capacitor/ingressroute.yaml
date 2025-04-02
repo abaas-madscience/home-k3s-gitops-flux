@@ -1,14 +1,14 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: flux-capacitor
+  name: capacitor
   namespace: flux-system
 spec:
   entryPoints:
-    - web
+    - web 
   routes:
-    - match: Host(`flux.lab.local`)
+    - match: Host(`flux.lab.local`) 
       kind: Rule
       services:
-        - name: capacitor
+        - name: capacitor 
           port: 9000
