@@ -4,9 +4,9 @@ metadata:
   name: renovate
   namespace: renovate
 spec:
-  schedule: "0 6 * * *"  # every day at 06:00 UTC
-  successfulJobsHistoryLimit: 1  # Keep only the last successful job
-  failedJobsHistoryLimit: 1      # Keep only the last failed job
+  schedule: "0 6 * * *" # every day at 06:00 UTC
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       template:
@@ -24,4 +24,6 @@ spec:
                   value: "abaas-madscience/home-k3s-gitops-flux"
                 - name: LOG_LEVEL
                   value: "info"
+                - name: RENOVATE_CONFIG_FILE
+                  value: "renovate.json"
           restartPolicy: OnFailure

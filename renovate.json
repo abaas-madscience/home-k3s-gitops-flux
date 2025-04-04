@@ -1,0 +1,22 @@
+{
+    "extends": [
+      "config:base"
+    ],
+    "kubernetes": {
+      "fileMatch": [
+        "clusters/.+\\.yaml$",
+        "infrastructure/flux/.+\\.yaml$"
+      ]
+    },
+    "packageRules": [
+      {
+        "matchDatasources": ["helm", "docker"],
+        "matchPackagePatterns": [
+          "^fluxcd",
+          "^ghcr.io/fluxcd"
+        ],
+        "labels": ["flux-update"],
+        "enabled": true
+      }
+    ]
+  }
