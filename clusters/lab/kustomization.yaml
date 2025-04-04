@@ -15,3 +15,4 @@ resources:
   - kubernetes-dashboard-kustomization.yaml
   - apps-monitoring-kustomization.yaml
   - flux-capacitor-kustomization.yaml
+  - infra-longhorn-kustomization.yaml
