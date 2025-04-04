@@ -76,6 +76,16 @@ kubectl get svc -n kubernetes-dashboard
 kubectl logs -n flux-system deploy/kustomize-controller -f
 ```
 
+### Kick off Renovate one time
+```
+kubectl create job --from=cronjob/renovate renovate-manual-run -n renovate
+```
+
+### Check the log of a job
+```
+kubectl logs job/renovate-manual-run -n renovate
+```
+
 ### Check renovate Logs
 ``` bash
 kubectl logs -n renovate deploy/renovate
