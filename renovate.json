@@ -18,5 +18,15 @@
         "labels": ["flux-update"],
         "enabled": true
       }
+    ],
+    "regexManagers": [
+      {
+        "fileMatch": ["flux-system/gotk-components.yaml"],
+        "matchStrings": ["image: fluxcd/([^:]+):(?<currentValue>[^\\s]+)"],
+        "depNameTemplate": "fluxcd/{{{match1}}}",
+        "datasourceTemplate": "docker",
+        "versioningTemplate": "docker"
+      }
     ]
   }
+  
