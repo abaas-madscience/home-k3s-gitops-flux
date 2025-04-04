@@ -91,6 +91,11 @@ kubectl logs job/renovate-manual-run -n renovate
 kubectl logs -n renovate deploy/renovate
 ```
 
+## Check FLUX Logs
+```
+flux logs -f --namespace=flux-system
+```
+
 ### Get Kustomizations
 ```bash
 flux get kustomizations
