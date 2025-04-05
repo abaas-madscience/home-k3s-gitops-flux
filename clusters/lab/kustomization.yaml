@@ -17,3 +17,4 @@ resources:
   - flux-capacitor-kustomization.yaml
   - infra-longhorn-kustomization.yaml
   - ../../infrastructure/node-exporter
+  - ../../infrastructure/victoria-metrics
