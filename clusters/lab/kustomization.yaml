@@ -18,3 +18,4 @@ resources:
   - infra-longhorn-kustomization.yaml
   - ../../infrastructure/node-exporter
   - ../../infrastructure/victoria-metrics
+  
