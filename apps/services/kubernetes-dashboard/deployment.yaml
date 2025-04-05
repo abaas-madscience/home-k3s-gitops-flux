@@ -6,7 +6,6 @@ metadata:
 spec:
   interval: 5m
   suspend: false # NOT USING IT, HERE FOR EXAMPLE
-  targetNamespace: kubernetes-dashboard
   install:
     createNamespace: true
   chart:
