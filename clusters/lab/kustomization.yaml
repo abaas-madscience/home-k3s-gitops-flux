@@ -7,12 +7,11 @@ resources:
   - ../../infrastructure/metallb
   - ../../infrastructure/traefik
   - ../../infrastructure/rancher
-  - whoami-kustomization.yaml
-  - http-echo-kustomization.yaml
   - sealed-secrets-kustomization.yaml
   - ../../infrastructure/sealed-secrets
+  - apps-whoami-kustomization.yaml
+  - apps-http-echo-kustomization.yaml
   - apps-services-renovate-kustomization.yaml
-  - kubernetes-dashboard-kustomization.yaml
   - apps-monitoring-kustomization.yaml
   - infra-longhorn-kustomization.yaml
   - ../../infrastructure/node-exporter
