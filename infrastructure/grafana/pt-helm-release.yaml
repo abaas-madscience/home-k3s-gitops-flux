@@ -17,7 +17,7 @@ spec:
   values:
     config:
       clients:
-        - url: http://victorialogs-victoria-logs-single-server:9428/loki/api/v1/push?_stream_fields=instance,job,host,app
+        - url: http://victorialogs-victoria-logs-single-server:9428/loki/api/v1/push
       positions:
         filename: /run/promtail/positions.yaml
       scrape_configs:
