@@ -11,5 +11,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-k3s-gitops-flux
+    name: flux-system
   targetNamespace: renovate
