@@ -1,4 +1,3 @@
-# infrastructure/promtail/helm-release.yaml
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -15,9 +14,12 @@ spec:
         name: grafana
         namespace: flux-system
   values:
+    extraArgs:
+      - -log.level=debug
+
     config:
       clients:
-      - url: http://victorialogs-victoria-logs-single-server:9428/insert/loki/api/v1/push
+        - url: http://victorialogs-victoria-logs-single-server:9428/insert/loki/api/v1/push
       positions:
         filename: /run/promtail/positions.yaml
       scrape_configs:
@@ -30,4 +32,3 @@ spec:
               labels:
                 job: kubernetes-pods
                 __path__: /var/log/pods/*/*/*.log
-

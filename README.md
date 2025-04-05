@@ -2,9 +2,7 @@
 
 Welcome to the **GitOps** repository for managing your Kubernetes cluster with **Flux**! 🎉
 
-This is a major work in progress and it changes over time.
-
-For now take what you can out of it. it is my living and breathing home network :-)
+This repository is a living and breathing setup for my home network, evolving over time. Take what you can and enjoy the journey! 🌟
 
 ---
 
@@ -15,21 +13,21 @@ Here's how the repository is organized:
 ```
 .
 ├── apps
-│   ├── services
-│   │   ├── http-echo
-│   │   ├── renovate
-│   │   └── whoami
-│   └── system
+│   ├── services
+│   │   ├── http-echo
+│   │   ├── renovate
+│   │   └── whoami
+│   └── system
 ├── bootstrap
-│   └── flux-system
+│   └── flux-system
 ├── clusters
-│   └── lab
+│   └── lab
 ├── infrastructure
-│   ├── cert-manager
-│   ├── metallb
-│   ├── rancher
-│   ├── sealed-secrets
-│   └── traefik
+│   ├── cert-manager
+│   ├── metallb
+│   ├── rancher
+│   ├── sealed-secrets
+│   └── traefik
 ├── tools
 ├── kustomization.yaml
 ├── LICENSE
@@ -40,149 +38,124 @@ Here's how the repository is organized:
 
 ## 🛠️ Setting Up Flux
 
-TODO: This is done through ansible after terraforming the cluster
-Check out my other repos for that in the meantime
+### 1️⃣ Generate PAT Token in GitHub
 
-### 1️⃣ Generate PAT Token in Github
+Generate a Personal Access Token (PAT) here: [GitHub Tokens](https://github.com/settings/tokens)
 
-Here: https://github.com/settings/tokens
+### 2️⃣ Automate Setup with Ansible
+
+The setup is automated using Ansible after Terraform provisions the cluster. Check out my other repositories for details on this process.
+
+---
 
 ## 🔍 Debugging & Logs
 
-### Check charts
-kubectl -n flux-system logs deployment/flux-controller
+### Common Commands
 
+- **Check Flux Logs:**
+  ```bash
+  flux logs -f --namespace=flux-system
+  ```
 
-### Check HelmRelease Status
-```
-kubectl get helmrelease <release-name>-n flux-system -o yaml
-```
+- **Check Kustomizations:**
+  ```bash
+  flux get kustomizations -A -w
+  ```
 
+- **Reconcile the Entire Cluster:**
+  ```bash
+  flux reconcile kustomization flux-system --with-source
+  ```
 
-### Check logs of controller like helm-controller
+- **Check HelmRelease Status:**
+  ```bash
+  kubectl describe helmrelease <release-name> -n <namespace>
+  ```
 
-```
-kubectl get deployments -n flux-system
-kubectl -n flux-system logs deployment/<flux-controller-name>
-```
+- **Check Controller Logs:**
+  ```bash
+  kubectl -n flux-system logs deployment/<controller-name>
+  ```
 
-### Check Service and IP's
-```bash
-kubectl get svc -n <service-name>
-```
+- **Kick off Renovate Manually:**
+  ```bash
+  kubectl create job --from=cronjob/renovate renovate-manual-run -n renovate
+  ```
 
-### Check Installation log in namespace
-```
-flux get helmreleases -n <namespace>
-
-```
-### Check Logs
-```bash
-kubectl logs -n flux-system deploy/kustomize-controller -f
-```
-
-### Kick off Renovate one time
-```
-kubectl create job --from=cronjob/renovate renovate-manual-run -n renovate
-```
-
-### Check the log of a job
-```
-kubectl logs job/renovate-manual-run -n renovate
-```
-
-### Check renovate Logs
-``` bash
-kubectl logs -n renovate deploy/renovate
-```
-
-## Check FLUX Logs
-```
-flux logs -f --namespace=flux-system
-```
-
-### Get Kustomizations
-```bash
-flux get kustomizations
-flux get kustomizations -A -w
-```
-
-### Reconcile the Entire Cluster
-```bash
-flux reconcile kustomization flux-system --with-source
-```
-
-### See Helm repos in all namespace
-```bash
-kubectl get helmrepositories --all-namespaces
-```
-
-## Check on an installation
-```bash
-kubectl describe helmrelease <release> -n <namespace>
-```
+- **Check Renovate Logs:**
+  ```bash
+  kubectl logs -n renovate deploy/renovate
+  ```
 
 ---
 
 ## 🛠️ Tools
 
-### Flux validate charts
-```bash
-tools/flux-validate-chart.sh bitnami sealed-secrets
+### Scripts for Common Tasks
 
-```
+- **Validate Charts:**
+  ```bash
+  tools/flux-validate-chart.sh <chart-name>
+  ```
 
-### Flux Watch Script
-```bash
-chmod +x flux-watch.sh
-./flux-watch.sh my-app my-namespace helmrelease
-```
+- **Watch Flux Resources:**
+  ```bash
+  chmod +x tools/flux-watch.sh
+  ./tools/flux-watch.sh <resource-name> <namespace> <resource-type>
+  ```
 
-### Alias for Debugging
-```bash
-alias fluxdebug='k9s -n flux-system'
-```
+- **Seal Secrets:**
+  ```bash
+  tools/seal-renovate-token.sh
+  ```
 
-### Curl Pod for testing
-```bash
-kubectl run curlpod --rm -it --image=curlimages/curl --restart=Never -- sh
-```
+### Debugging Aliases
 
-### Or BusyBox Pod for testing
-```bash
-kubectl run -it --rm --restart=Never busybox -n flux-system --image=busybox
-```
+- **Alias for Flux Debugging:**
+  ```bash
+  alias fluxdebug='k9s -n flux-system'
+  ```
+
+- **Curl Pod for Testing:**
+  ```bash
+  kubectl run curlpod --rm -it --image=curlimages/curl --restart=Never -- sh
+  ```
+
+- **BusyBox Pod for Testing:**
+  ```bash
+  kubectl run -it --rm --restart=Never busybox -n flux-system --image=busybox
+  ```
 
 ---
 
-## 🔐 Managing Secrets for Renovate
+## 🔐 Managing Secrets
 
-```
+### Sealing Secrets
 
-Or use the script:
+Use the provided script to seal secrets:
 ```bash
-tools/seal-renovate-token.sh
+./tools/seal-renovate-token.sh
 ```
 
 ---
 
 ## 🧹 Pre-Commit Hook
 
-Add the following pre-commit hook to `.git/hooks/pre-commit`:
+Add the following pre-commit hook to `.git/hooks/pre-commit` to prevent committing unsealed secrets or sensitive content:
 
 ```bash
 #!/bin/bash
 
 echo "🔍 Checking for unsealed secrets and sensitive content..."
 
-# 1. Block unsealed secret filenames
+# Block unsealed secret filenames
 if git diff --cached --name-only | grep -E '.*secret.*\.ya?ml' | grep -v 'sealed'; then
   echo "❌ Unsealed secret file detected in staged files!"
   echo "👉 Use SealedSecrets before committing."
   exit 1
 fi
 
-# 2. Check for dangerous content in staged lines
+# Check for sensitive content in staged lines
 MATCHES=$(git diff --cached | grep -Ei 'token:|password:|secret:' | grep -vE '^\+?\s*#')
 
 if [[ -n "$MATCHES" ]]; then
@@ -206,7 +179,8 @@ chmod +x .git/hooks/pre-commit
 
 - **Grafana** 📈
 - **VictoriaMetrics (VM)** 📊
-- **Loki** 🔍
+- **VictoriaLogs** 🔍
+- **Promtail** 🔍
 
 ---
 
