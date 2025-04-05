@@ -8,7 +8,7 @@ server:
   extraVolumes:
     - name: scrape-config
       configMap:
-        name: scrape
+        name: vm-scrape-config
   extraVolumeMounts:
     - name: scrape-config
       mountPath: /config
