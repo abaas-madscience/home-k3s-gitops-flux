@@ -17,7 +17,8 @@ spec:
   values:
     config:
       clients:
-        - url: http://victorialogs-victoria-logs-single-server:9428/api/v1/push
+        - url: http://victorialogs-victoria-logs-single-server:9428/insert/logs
+
       positions:
         filename: /run/promtail/positions.yaml
       scrape_configs:
