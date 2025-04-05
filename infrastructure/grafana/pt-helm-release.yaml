@@ -14,8 +14,8 @@ spec:
         name: grafana
         namespace: flux-system
   values:
-    extraArgs:
-      - -log.level=debug
+#    extraArgs:
+#      - -log.level=debug
 
     config:
       clients:
