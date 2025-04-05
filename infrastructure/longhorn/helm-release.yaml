@@ -4,6 +4,7 @@ metadata:
   name: longhorn
   namespace: flux-system
 spec:
+  targetNamespace: longhorn-system
   interval: 5m
   chart:
     spec:
@@ -13,7 +14,6 @@ spec:
         kind: HelmRepository
         name: longhorn
         namespace: flux-system
-      targetNamespace: longhorn-system
   valuesFrom:
     - kind: ConfigMap
       name: longhorn-values
