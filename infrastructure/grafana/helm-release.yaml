@@ -31,6 +31,13 @@ spec:
       datasources.yaml:
         apiVersion: 1
         datasources:
+          - name: VictoriaLogs
+            type: loki
+            url: http://victorialogs-victoria-logs-single-server:9428
+            access: proxy
+            jsonData:
+              maxLines: 1000
+
           - name: VictoriaMetrics
             type: prometheus
             url: http://victoriametrics-victoria-metrics-single-server:8428
