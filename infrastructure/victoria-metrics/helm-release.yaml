@@ -12,6 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: flux-system
+        namespace: flux-system
   values:
     server:
       extraArgs:
