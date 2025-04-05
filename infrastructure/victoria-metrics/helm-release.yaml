@@ -16,10 +16,10 @@ spec:
   values:
     server:
       extraArgs:
-        - promscrape.config=/config/prometheus.yml
-        - httpListenAddr=:8428
-        - loggerLevel=INFO
-        - envflag.enable=
+        httpListenAddr: ":8428"
+        promscrape.config: /config/prometheus.yml
+        loggerLevel: INFO
+        envflag.enable: "true"
       retentionPeriod: 1
       volumeMounts:
         - name: scrape-config
