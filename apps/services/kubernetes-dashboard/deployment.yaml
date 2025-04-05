@@ -2,10 +2,10 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: kubernetes-dashboard
-  namespace: kubernetes-dashboard
+  namespace: flux-system
 spec:
   interval: 5m
-  suspend: true # NOT USING IT, HERE FOR EXAMPLE
+  suspend: false # NOT USING IT, HERE FOR EXAMPLE
   targetNamespace: kubernetes-dashboard
   install:
     createNamespace: true
