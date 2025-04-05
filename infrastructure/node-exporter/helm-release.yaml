@@ -16,5 +16,6 @@ spec:
   values:
     service:
       port: 9100
-    serviceMonitor:
-      enabled: true
+    prometheus:
+      monitor:
+        enabled: true
