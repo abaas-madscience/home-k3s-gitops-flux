@@ -17,8 +17,7 @@ spec:
   values:
     config:
       clients:
-        - url: http://victorialogs-victoria-logs-single-server:9428/insert/logs
-
+        - url: http://victorialogs-victoria-logs-single-server:9428/loki/api/v1/push?_stream_fields=instance,job,host,app
       positions:
         filename: /run/promtail/positions.yaml
       scrape_configs:
@@ -31,3 +30,4 @@ spec:
               labels:
                 job: kubernetes-pods
                 __path__: /var/log/pods/*/*/*.log
+
