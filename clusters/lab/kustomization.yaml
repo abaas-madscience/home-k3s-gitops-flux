@@ -14,8 +14,8 @@ resources:
   - apps-services-renovate-kustomization.yaml
   - kubernetes-dashboard-kustomization.yaml
   - apps-monitoring-kustomization.yaml
-  - flux-capacitor-kustomization.yaml
   - infra-longhorn-kustomization.yaml
   - ../../infrastructure/node-exporter
   - ../../infrastructure/victoria-metrics
   - ../../infrastructure/grafana
+  - ../../apps/system/flux-capactitor
