@@ -9,6 +9,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-k3s-gitops-flux
-    namespace: flux-system
+    name: flux-system
   targetNamespace: longhorn-system
