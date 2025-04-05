@@ -2,8 +2,9 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: victoriametrics
-  namespace: monitoring
+  namespace: flux-system
 spec:
+  targetNamespace: monitoring
   interval: 5m
   chart:
     spec:
