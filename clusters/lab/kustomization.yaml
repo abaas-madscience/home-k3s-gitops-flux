@@ -18,4 +18,4 @@ resources:
   - ../../infrastructure/node-exporter
   - ../../infrastructure/victoria-metrics
   - ../../infrastructure/grafana
-  - ../../apps/system/flux-capactitor
+  - ../../apps/system/flux-capacitor

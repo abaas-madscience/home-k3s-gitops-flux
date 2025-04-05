@@ -62,7 +62,7 @@ The setup is automated using Ansible after Terraform provisions the cluster. Che
   flux get kustomizations -A -w
   ```
 
-- **Reconcile the Entire Cluster:**
+- **Reconcile:**
   ```bash
   flux reconcile kustomization flux-system --with-source
   ```
