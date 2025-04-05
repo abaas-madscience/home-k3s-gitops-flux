@@ -5,3 +5,4 @@ resources:
   - helm-release.yaml
   - grafana-admin.yaml
   - ingress-route.yaml
+  - pt-helm-release.yaml
