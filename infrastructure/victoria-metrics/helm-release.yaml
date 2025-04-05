@@ -16,7 +16,9 @@ spec:
   values:
     server:
       retentionPeriod: 1
-      extraArgs: [] 
+    extraArgs:
+      loggerLevel: INFO
+      envflag.enable: ""
       persistentVolume:
         enabled: true
         storageClass: longhorn
