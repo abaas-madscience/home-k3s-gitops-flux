@@ -16,3 +16,4 @@ resources:
   - apps-monitoring-kustomization.yaml
   - flux-capacitor-kustomization.yaml
   - infra-longhorn-kustomization.yaml
+  - ../../infrastructure/node-exporter
