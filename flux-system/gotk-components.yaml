@@ -908,8 +908,8 @@ spec:
       name: Status
       type: string
     deprecated: true
-    deprecationWarning: v1beta2 Bucket is deprecated, upgrade to v1
-    name: v1beta2
+    deprecationWarning: v1 Bucket is deprecated, upgrade to v1
+    name: v1
     schema:
       openAPIV3Schema:
         description: Bucket is the Schema for the buckets API.
@@ -2089,8 +2089,8 @@ spec:
       name: Status
       type: string
     deprecated: true
-    deprecationWarning: v1beta2 GitRepository is deprecated, upgrade to v1
-    name: v1beta2
+    deprecationWarning: v1 GitRepository is deprecated, upgrade to v1
+    name: v1
     schema:
       openAPIV3Schema:
         description: GitRepository is the Schema for the gitrepositories API.
@@ -3175,8 +3175,8 @@ spec:
       name: Status
       type: string
     deprecated: true
-    deprecationWarning: v1beta2 HelmChart is deprecated, upgrade to v1
-    name: v1beta2
+    deprecationWarning: v1 HelmChart is deprecated, upgrade to v1
+    name: v1
     schema:
       openAPIV3Schema:
         description: HelmChart is the Schema for the helmcharts API.
@@ -4080,8 +4080,8 @@ spec:
       name: Status
       type: string
     deprecated: true
-    deprecationWarning: v1beta2 HelmRepository is deprecated, upgrade to v1
-    name: v1beta2
+    deprecationWarning: v1 HelmRepository is deprecated, upgrade to v1
+    name: v1
     schema:
       openAPIV3Schema:
         description: HelmRepository is the Schema for the helmrepositories API.
@@ -4406,7 +4406,7 @@ spec:
     - jsonPath: .metadata.creationTimestamp
       name: Age
       type: date
-    name: v1beta2
+    name: v1
     schema:
       openAPIV3Schema:
         description: OCIRepository is the Schema for the ocirepositories API
@@ -6116,8 +6116,8 @@ spec:
       name: Status
       type: string
     deprecated: true
-    deprecationWarning: v1beta2 Kustomization is deprecated, upgrade to v1
-    name: v1beta2
+    deprecationWarning: v1 Kustomization is deprecated, upgrade to v1
+    name: v1
     schema:
       openAPIV3Schema:
         description: Kustomization is the Schema for the kustomizations API.
@@ -6589,7 +6589,7 @@ spec:
                 pattern: ^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$
                 type: string
               validation:
-                description: 'Deprecated: Not used in v1beta2.'
+                description: 'Deprecated: Not used in v1.'
                 enum:
                 - none
                 - client
@@ -7011,7 +7011,7 @@ spec:
                         default: '*'
                         description: |-
                           Version semver expression, ignored for charts from v1.GitRepository and
-                          v1beta2.Bucket sources. Defaults to latest when omitted.
+                          v1.Bucket sources. Defaults to latest when omitted.
                         type: string
                     required:
                     - chart
@@ -8022,8 +8022,8 @@ spec:
       name: Status
       type: string
     deprecated: true
-    deprecationWarning: v2beta1 HelmRelease is deprecated, upgrade to v2
-    name: v2beta1
+    deprecationWarning: v2 HelmRelease is deprecated, upgrade to v2
+    name: v2
     schema:
       openAPIV3Schema:
         description: HelmRelease is the Schema for the helmreleases API
@@ -8050,7 +8050,7 @@ spec:
             properties:
               chart:
                 description: |-
-                  Chart defines the template of the v1beta2.HelmChart that should be created
+                  Chart defines the template of the v1.HelmChart that should be created
                   for this HelmRelease.
                 properties:
                   metadata:
@@ -8076,7 +8076,7 @@ spec:
                         type: object
                     type: object
                   spec:
-                    description: Spec holds the template for the v1beta2.HelmChartSpec
+                    description: Spec holds the template for the v1.HelmChartSpec
                       for this HelmRelease.
                     properties:
                       chart:
@@ -8085,7 +8085,7 @@ spec:
                         type: string
                       interval:
                         description: |-
-                          Interval at which to check the v1beta2.Source for updates. Defaults to
+                          Interval at which to check the v1.Source for updates. Defaults to
                           'HelmReleaseSpec.Interval'.
                         pattern: ^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$
                         type: string
@@ -8101,7 +8101,7 @@ spec:
                         - Revision
                         type: string
                       sourceRef:
-                        description: The name and namespace of the v1beta2.Source
+                        description: The name and namespace of the v1.Source
                           the chart is available at.
                         properties:
                           apiVersion:
@@ -8176,8 +8176,8 @@ spec:
                       version:
                         default: '*'
                         description: |-
-                          Version semver expression, ignored for charts from v1beta2.GitRepository and
-                          v1beta2.Bucket sources. Defaults to latest when omitted.
+                          Version semver expression, ignored for charts from v1.GitRepository and
+                          v1.Bucket sources. Defaults to latest when omitted.
                         type: string
                     required:
                     - chart
@@ -8192,7 +8192,7 @@ spec:
                   Helm chart artifact.
 
                   Note: this field is provisional to the v2 API, and not actively used
-                  by v2beta1 HelmReleases.
+                  by v2 HelmReleases.
                 properties:
                   apiVersion:
                     description: APIVersion of the referent.
@@ -8247,7 +8247,7 @@ spec:
                   currently existing in the cluster.
 
                   Note: this field is provisional to the v2beta2 API, and not actively used
-                  by v2beta1 HelmReleases.
+                  by v2 HelmReleases.
                 properties:
                   ignore:
                     description: |-
@@ -9052,7 +9052,7 @@ spec:
                   up to the last successfully completed release.
 
                   Note: this field is provisional to the v2beta2 API, and not actively used
-                  by v2beta1 HelmReleases.
+                  by v2 HelmReleases.
                 items:
                   description: |-
                     Snapshot captures a point-in-time copy of the status information for a Helm release,
@@ -9171,7 +9171,7 @@ spec:
                   "values") of the last reconciliation attempt.
 
                   Note: this field is provisional to the v2beta2 API, and not actively used
-                  by v2beta1 HelmReleases.
+                  by v2 HelmReleases.
                 type: string
               lastAttemptedGeneration:
                 description: |-
@@ -9179,7 +9179,7 @@ spec:
                   to reconcile.
 
                   Note: this field is provisional to the v2beta2 API, and not actively used
-                  by v2beta1 HelmReleases.
+                  by v2 HelmReleases.
                 format: int64
                 type: integer
               lastAttemptedReleaseAction:
@@ -9188,7 +9188,7 @@ spec:
                   HelmRelease. It is used to determine the active remediation strategy.
 
                   Note: this field is provisional to the v2beta2 API, and not actively used
-                  by v2beta1 HelmReleases.
+                  by v2 HelmReleases.
                 type: string
               lastAttemptedRevision:
                 description: LastAttemptedRevision is the revision of the last reconciliation
@@ -9205,7 +9205,7 @@ spec:
                   value, so a change of the annotation value can be detected.
 
                   Note: this field is provisional to the v2beta2 API, and not actively used
-                  by v2beta1 HelmReleases.
+                  by v2 HelmReleases.
                 type: string
               lastHandledReconcileAt:
                 description: |-
@@ -9219,7 +9219,7 @@ spec:
                   value, so a change of the annotation value can be detected.
 
                   Note: this field is provisional to the v2beta2 API, and not actively used
-                  by v2beta1 HelmReleases.
+                  by v2 HelmReleases.
                 type: string
               lastReleaseRevision:
                 description: LastReleaseRevision is the revision of the last successful
@@ -9240,7 +9240,7 @@ spec:
                   current release.
 
                   Note: this field is provisional to the v2beta2 API, and not actively used
-                  by v2beta1 HelmReleases.
+                  by v2 HelmReleases.
                 type: string
               upgradeFailures:
                 description: |-
@@ -9293,7 +9293,7 @@ spec:
             properties:
               chart:
                 description: |-
-                  Chart defines the template of the v1beta2.HelmChart that should be created
+                  Chart defines the template of the v1.HelmChart that should be created
                   for this HelmRelease.
                 properties:
                   metadata:
@@ -9319,7 +9319,7 @@ spec:
                         type: object
                     type: object
                   spec:
-                    description: Spec holds the template for the v1beta2.HelmChartSpec
+                    description: Spec holds the template for the v1.HelmChartSpec
                       for this HelmRelease.
                     properties:
                       chart:
@@ -9427,8 +9427,8 @@ spec:
                       version:
                         default: '*'
                         description: |-
-                          Version semver expression, ignored for charts from v1beta2.GitRepository and
-                          v1beta2.Bucket sources. Defaults to latest when omitted.
+                          Version semver expression, ignored for charts from v1.GitRepository and
+                          v1.Bucket sources. Defaults to latest when omitted.
                         type: string
                     required:
                     - chart
@@ -10849,8 +10849,8 @@ spec:
       name: Status
       type: string
     deprecated: true
-    deprecationWarning: v1beta2 Alert is deprecated, upgrade to v1beta3
-    name: v1beta2
+    deprecationWarning: v1 Alert is deprecated, upgrade to v1beta3
+    name: v1
     schema:
       openAPIV3Schema:
         description: Alert is the Schema for the alerts API
@@ -11420,8 +11420,8 @@ spec:
       name: Status
       type: string
     deprecated: true
-    deprecationWarning: v1beta2 Provider is deprecated, upgrade to v1beta3
-    name: v1beta2
+    deprecationWarning: v1 Provider is deprecated, upgrade to v1beta3
+    name: v1
     schema:
       openAPIV3Schema:
         description: Provider is the Schema for the providers API.
@@ -12215,8 +12215,8 @@ spec:
       name: Status
       type: string
     deprecated: true
-    deprecationWarning: v1beta2 Receiver is deprecated, upgrade to v1
-    name: v1beta2
+    deprecationWarning: v1 Receiver is deprecated, upgrade to v1
+    name: v1
     schema:
       openAPIV3Schema:
         description: Receiver is the Schema for the receivers API.
