@@ -4,11 +4,11 @@ metadata:
   name: whoami
   namespace: flux-system
 spec:
+  targetNamespace: whoami
   interval: 1m
   path: ./apps/services/whoami
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  targetNamespace: whoami
   wait: true

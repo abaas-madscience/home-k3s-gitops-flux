@@ -4,11 +4,10 @@ metadata:
   name: infra-longhorn
   namespace: flux-system
 spec:
+  targetNamespace: longhorn-system
   interval: 10m
   path: ./infrastructure/longhorn
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
     namespace: flux-system
-  targetNamespace: longhorn-system
