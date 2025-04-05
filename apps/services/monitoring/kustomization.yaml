@@ -2,5 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
-  #- loki/loki-helm-repo.yaml
-  #- loki/loki-helm-release.yaml
+  - victorialogs/victoria-helm-repo.yaml
+  - victorialogs/victoria-helm-release.yaml
