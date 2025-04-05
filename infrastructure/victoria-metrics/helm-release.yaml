@@ -1,9 +1,17 @@
 server:
   retentionPeriod: 1
+
   extraArgs:
     httpListenAddr: ":8428"
     loggerLevel: INFO
     envflag.enable: ""
+  extraVolumes:
+    - name: scrape-config
+      configMap:
+        name: scrape
+  extraVolumeMounts:
+    - name: scrape-config
+      mountPath: /config
   persistentVolume:
     enabled: true
     storageClass: longhorn
