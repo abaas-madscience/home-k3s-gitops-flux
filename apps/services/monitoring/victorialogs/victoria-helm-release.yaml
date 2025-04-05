@@ -11,7 +11,7 @@ spec:
       version: 0.6.0
       sourceRef:
         kind: HelmRepository
-        name: victorialogs
+        name: flux-system
         namespace: flux-system
   values:
     persistence:
