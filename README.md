@@ -53,13 +53,13 @@ Here: https://github.com/settings/tokens
 kubectl -n flux-system logs deployment/flux-controller
 
 
-2. Check HelmRelease Status
+### Check HelmRelease Status
 ```
-kubectl get helmrelease kube-db-test/kubernetes-dashboard -n flux-system -o yaml
+kubectl get helmrelease <release-name>-n flux-system -o yaml
 ```
 
 
-3. Check logs of controller like helm-controller
+### Check logs of controller like helm-controller
 
 ```
 kubectl get deployments -n flux-system
@@ -68,9 +68,14 @@ kubectl -n flux-system logs deployment/<flux-controller-name>
 
 ### Check Service and IP's
 ```bash
-kubectl get svc -n kubernetes-dashboard
+kubectl get svc -n <service-name>
 ```
 
+### Check Installation log in namespace
+```
+flux get helmreleases -n <namespace>
+
+```
 ### Check Logs
 ```bash
 kubectl logs -n flux-system deploy/kustomize-controller -f
@@ -107,20 +112,14 @@ flux get kustomizations -A -w
 flux reconcile kustomization flux-system --with-source
 ```
 
-### Helm Sources
-```bash
-flux get sources helm rancher-dev -n flux-system
-flux get helmreleases -n cattle-system
-flux logs --level=error --kind=HelmRelease --name=rancher -n cattle-system
-```
 ### See Helm repos in all namespace
-```
+```bash
 kubectl get helmrepositories --all-namespaces
 ```
 
 ## Check on an installation
-```
-kubectl describe helmrelease loki -n monitoring
+```bash
+kubectl describe helmrelease <release> -n <namespace>
 ```
 
 ---
