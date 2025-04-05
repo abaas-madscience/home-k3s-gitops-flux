@@ -1,40 +1,28 @@
-apiVersion: helm.toolkit.fluxcd.io/v2
+# infrastructure/victorialogs/helmrelease.yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: loki
-  namespace: monitoring
+  name: victorialogs
+  namespace: observability
 spec:
-  releaseName: loki
+  interval: 5m
   chart:
     spec:
-      chart: loki-stack
-      version: 2.9.9
+      chart: victoria-logs-single
+      version: 0.6.0
       sourceRef:
         kind: HelmRepository
-        name: grafana
+        name: victorialogs
         namespace: monitoring
-  interval: 10m
   values:
-    namespace: monitoring
-    loki:
-      persistence:
-        enabled: true
-        size: 10Gi
-        storageClassName: default
-      service:
-        type: ClusterIP
-      ingester:
-        replicaCount: 1
-      podSecurityContext:
-        enabled: false
-      containerSecurityContext:
-        enabled: false
-    promtail:
-      podSecurityPolicy:
-        enabled: false
-    grafana:
-      podSecurityPolicy:
-        enabled: false
-    prometheus:
-      podSecurityPolicy:
-        enabled: false    
+    persistence:
+      enabled: true
+      existingClaim: victorialogs-pvc
+    service:
+      type: ClusterIP
+    resources:
+      limits:
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
