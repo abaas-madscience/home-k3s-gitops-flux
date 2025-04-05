@@ -17,6 +17,7 @@ spec:
     server:
       extraArgs:
         httpListenAddr: ":8428"
+        enableLokiPushAPI: "true"
         loggerLevel: "INFO"
         envflag.enable: "true"
         promscrape.config: "/config/prometheus.yml"
