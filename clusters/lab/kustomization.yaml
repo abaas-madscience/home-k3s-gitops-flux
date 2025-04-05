@@ -18,4 +18,4 @@ resources:
   - infra-longhorn-kustomization.yaml
   - ../../infrastructure/node-exporter
   - ../../infrastructure/victoria-metrics
-  - ../../infrastructure/helm-repos/grafana.yaml
+  - ../../infrastructure/grafana
