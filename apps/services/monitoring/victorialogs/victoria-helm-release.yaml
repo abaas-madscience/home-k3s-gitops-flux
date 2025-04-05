@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: victorialogs
-        namespace: monitoring
+        namespace: flux-system
   values:
     persistence:
       enabled: true

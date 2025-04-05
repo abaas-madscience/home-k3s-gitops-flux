@@ -16,4 +16,4 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kubernetes-dashboard
-        namespace: kubernetes-dashboard 
+        namespace: flux-system
