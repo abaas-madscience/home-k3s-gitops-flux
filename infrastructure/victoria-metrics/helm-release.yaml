@@ -17,6 +17,7 @@ spec:
     server:
       retentionPeriod: 1
     extraArgs:
+      httpListenAddr: ":8428"
       loggerLevel: INFO
       envflag.enable: ""
       persistentVolume:
