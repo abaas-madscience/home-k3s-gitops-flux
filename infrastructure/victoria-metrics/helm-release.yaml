@@ -1,28 +1,20 @@
 server:
-  retentionPeriod: 1
-
   extraArgs:
     httpListenAddr: ":8428"
     loggerLevel: INFO
     envflag.enable: ""
-  extraVolumes:
+    promscrape.config: /config/prometheus.yml
+  retentionPeriod: 1
+  volumeMounts:
+    - name: scrape-config
+      mountPath: /config
+  volumes:
     - name: scrape-config
       configMap:
         name: vm-scrape-config
-  extraVolumeMounts:
-    - name: scrape-config
-      mountPath: /config
   persistentVolume:
     enabled: true
     storageClass: longhorn
     size: 10Gi
   service:
     type: ClusterIP
-  scrape:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-      namespaceSelector:
-        any: true
-  operator:
-    enabled: true
