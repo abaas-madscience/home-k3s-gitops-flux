@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: http-echo
+  name: apps-http-echo
 spec:
   replicas: 1
   selector:
