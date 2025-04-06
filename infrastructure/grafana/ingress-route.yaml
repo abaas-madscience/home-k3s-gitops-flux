@@ -1,9 +1,8 @@
-# infrastructure/grafana/ingress-route.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: grafana
-  namespace: flux-system
+  namespace: monitoring
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
