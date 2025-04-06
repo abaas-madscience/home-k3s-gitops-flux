@@ -15,10 +15,8 @@ spec:
         name: infra-victoria-logs
         namespace: flux-system
   values:
-    fullnameOverride: victoria-logs  
-    nameOverride: victoria-logs
-    statefulset:
-      name: victoria-logs 
+    fullnameOverride: victoria-logs  # Override the full name
+    nameOverride: victoria-logs     # Override the name used for StatefulSet and associated resources
     persistence:
       enabled: true
       existingClaim: victorialogs-pvc
