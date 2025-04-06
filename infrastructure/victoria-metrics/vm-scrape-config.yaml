@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: vm-scrape-config
-  namespace: flux-system
+  namespace: monitoring
 data:
   prometheus.yml: |
     global:

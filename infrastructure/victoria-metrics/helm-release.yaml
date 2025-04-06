@@ -12,7 +12,7 @@ spec:
       version: 0.13.5
       sourceRef:
         kind: HelmRepository
-        name: infra-victoria-logs # Same reopo
+        name: infra-victoria-logs # Same repo
         namespace: flux-system
   values:
     server:
