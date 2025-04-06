@@ -17,6 +17,9 @@ spec:
   values:
     fullnameOverride: victoria-logs  # Override the full name
     nameOverride: victoria-logs     # Override the name used for StatefulSet and associated resources
+    server:
+      podLabels:
+        app: victoria-logs
     persistence:
       enabled: true
       existingClaim: victorialogs-pvc
