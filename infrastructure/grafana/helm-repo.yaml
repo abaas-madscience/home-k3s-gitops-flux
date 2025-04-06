@@ -1,4 +1,3 @@
-# infrastructure/helm-repos/grafana.yaml
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
