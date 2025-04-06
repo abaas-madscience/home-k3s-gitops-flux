@@ -1,7 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: victorialogs
+  name: infra-victoria-logs
   namespace: flux-system
 spec:
   interval: 1h
