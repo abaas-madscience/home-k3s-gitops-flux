@@ -6,37 +6,9 @@ This repository is a living and breathing setup for my home network, evolving ov
 
 ---
 
-## 📂 Repository Structure
-
-Here's how the repository is organized:
-
-```
-.
-├── apps
-│   ├── services
-│   │   ├── http-echo
-│   │   ├── renovate
-│   │   └── whoami
-│   └── system
-├── bootstrap
-│   └── flux-system
-├── clusters
-│   └── lab
-├── infrastructure
-│   ├── cert-manager
-│   ├── metallb
-│   ├── rancher
-│   ├── sealed-secrets
-│   └── traefik
-├── tools
-├── kustomization.yaml
-├── LICENSE
-└── README.md
-```
-
----
-
 ## 🛠️ Setting Up Flux
+
+Follow the installation for your operating system, then
 
 ### 1 Generate PAT Token in GitHub
 
