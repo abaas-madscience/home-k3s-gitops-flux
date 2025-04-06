@@ -17,3 +17,11 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: longhorn-values
+
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3

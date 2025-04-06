@@ -52,6 +52,11 @@ The setup is automated using Ansible after Terraform provisions the cluster. Che
 
 ### Common Commands
 
+- **Delete repo in namespace **
+  ``bash
+  kubectl delete helmrepository longhorn -n longhorn-system
+  ``
+
 - **Check Flux Logs:**
   ```bash
   flux logs -f --namespace=flux-system
