@@ -9,7 +9,8 @@ resources:
   - ../../infrastructure/rancher
   - sealed-secrets-kustomization.yaml
   - ../../infrastructure/sealed-secrets
-  - infra-longhorn-kustomization.yaml
+#  - infra-longhorn-kustomization.yaml
+  - ../../infrastructure/longhorn
   - ../../infrastructure/node-exporter
   - ../../infrastructure/victoria-metrics
   - ../../infrastructure/grafana
