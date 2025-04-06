@@ -1,9 +1,8 @@
-# infrastructure/grafana/grafana-admin.yaml
 apiVersion: v1
 kind: Secret
 metadata:
   name: grafana-admin
-  namespace: monitoring
+  namespace: flux-system
 type: Opaque
 stringData:
   admin-user: admin
