@@ -17,7 +17,8 @@ spec:
   values:
     adminUser: admin
     adminPassword: admin
-
+    envFromSecrets: [] 
+  
     service:
       type: ClusterIP
 
