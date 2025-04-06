@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: ./infrastructure/victoria-logs
+  path: ./infrastructure/victoria-metrics
   prune: true
   dependsOn:
     - name: infra-vl
