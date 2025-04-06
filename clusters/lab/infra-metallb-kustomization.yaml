@@ -4,11 +4,12 @@ metadata:
   name: metallb
   namespace: flux-system
 spec:
-  interval: 1m
-  path: ./../../infrastructure/metallb/helm
+  interval: 10m
+  path: ../../infrastructure/metallb
   prune: true
+  dependsOn:
+    - name: metallb-crds
   sourceRef:
     kind: GitRepository
     name: flux-system
-  dependsOn:
-    - name: metallb-crds
+    namespace: flux-system

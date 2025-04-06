@@ -3,8 +3,8 @@ kind: Kustomization
 resources:
   - cert-manager-crds-kustomization.yaml
   - cert-manager-app-kustomization.yaml
-  - metallb-crds-kustomization.yaml
-  - ../../infrastructure/metallb
+  - infra-metallb-crds-kustomization.yaml
+  - infra-metallb-crds-kustomization.yaml
   - ../../infrastructure/traefik
   - ../../infrastructure/rancher
   - sealed-secrets-kustomization.yaml
