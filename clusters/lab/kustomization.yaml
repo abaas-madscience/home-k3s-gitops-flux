@@ -14,7 +14,7 @@ resources:
   - ../../infrastructure/node-exporter
   - ../../infrastructure/victoria-metrics
   - ../../infrastructure/grafana
-  - ../../apps/system/flux-capacitor
+#  - ../../apps/system/flux-capacitor
   - apps-whoami-kustomization.yaml
   - apps-http-echo-kustomization.yaml
   - apps-services-renovate-kustomization.yaml
