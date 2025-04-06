@@ -6,7 +6,7 @@ metadata:
 spec:
   targetNamespace: infra-longhorn
   interval: 10m
-  path: ./infrastructure/longhorn
+  path: ../../infrastructure/longhorn
   prune: true
   sourceRef:
     kind: GitRepository
