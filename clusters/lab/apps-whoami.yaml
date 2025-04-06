@@ -8,6 +8,8 @@ spec:
   interval: 1m
   path: ./apps/services/whoami
   prune: true
+  dependsOn:
+  - name: infra-traefik  
   sourceRef:
     kind: GitRepository
     name: flux-system

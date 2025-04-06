@@ -4,11 +4,11 @@ metadata:
   name: apps-renovate
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: sealed-secrets
   interval: 5m
   path: ./apps/services/renovate
   prune: true
+  dependsOn:
+    - name: infra-sealed-secrets
   sourceRef:
     kind: GitRepository
     name: flux-system
