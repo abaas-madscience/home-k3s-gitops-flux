@@ -4,7 +4,7 @@ metadata:
   name: infra-longhorn
   namespace: flux-system
 spec:
-  targetNamespace: longhorn-system
+  targetNamespace: infra-longhorn
   interval: 10m
   path: ./infrastructure/longhorn
   prune: true
