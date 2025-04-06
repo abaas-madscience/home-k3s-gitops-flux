@@ -1,15 +1,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cert-manager
+  name: infra-grafana
   namespace: flux-system
 spec:
-  interval: 1m
-  path: ./../../infrastructure/cert-manager/app
+  interval: 10m
+  path: ./infrastructure/grafana
   prune: true
+  dependsOn:
+    - name: infra-victoria-metrics
   sourceRef:
     kind: GitRepository
     name: flux-system
-  dependsOn:
-    - name: cert-manager-crds
-  wait: true
+    namespace: flux-system

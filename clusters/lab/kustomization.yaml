@@ -1,21 +1,17 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - cert-manager-crds-kustomization.yaml
-  - cert-manager-app-kustomization.yaml
-  - infra-metallb-crds-kustomization.yaml
-  - infra-metallb-kustomization.yaml
+  - infra-cert-manager-crds.yaml
+  - infra-cert-manager-app.yaml
+  - infra-metallb-crds.yaml
+  - infra-metallb.yaml
   - ../../infrastructure/traefik
-  - ../../infrastructure/rancher
-  - sealed-secrets-kustomization.yaml
-  - ../../infrastructure/sealed-secrets
-#  - infra-longhorn-kustomization.yaml
-  - ../../infrastructure/longhorn
-  - ../../infrastructure/node-exporter
-  - ../../infrastructure/grafana
-#  - ../../apps/system/flux-capacitor
-  - apps-whoami-kustomization.yaml
-  - apps-http-echo-kustomization.yaml
-  - apps-services-renovate-kustomization.yaml
-  - apps-monitoring-kustomization.yaml
-  - ../../infrastructure/victoria-metrics
+  - infra-longhorn.yaml
+  - infra-victoria-logs.yaml
+  - infra-victoria-metrics.yaml
+  - infra-node-exporter.yaml
+  - infra-sealed-secrets.yaml
+  - infra-grafana.yaml
+  - apps-whoami.yaml
+  - apps-http-echo.yaml
+  - apps-services-renovate.yaml

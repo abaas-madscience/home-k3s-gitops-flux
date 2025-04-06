@@ -1,12 +1,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: metallb-crds
+  name: infra-traefik
   namespace: flux-system
 spec:
   interval: 10m
-  path: ../../infrastructure/metallb/crds
+  path: ./infrastructure/traefik
   prune: true
+  dependsOn:
+    - name: infra-metallb
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -1,15 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: metallb
+  name: infra-cert-manager-crds
   namespace: flux-system
 spec:
-  interval: 10m
-  path: ../../infrastructure/metallb
+  interval: 1m
+  path: ./infrastructure/cert-manager/crds
   prune: true
-  dependsOn:
-    - name: metallb-crds
   sourceRef:
     kind: GitRepository
     name: flux-system
-    namespace: flux-system
+  wait: true
