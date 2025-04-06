@@ -12,7 +12,7 @@ spec:
       version: 1.6.1 # or latest
       sourceRef:
         kind: HelmRepository
-        name: infa-longhorn
+        name: infra-longhorn
         namespace: flux-system
   valuesFrom:
     - kind: ConfigMap
