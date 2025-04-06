@@ -8,7 +8,7 @@ spec:
   path: ./infrastructure/victoria-logs
   prune: true
   dependsOn:
-    - name: infra-victoria-logs
+    - name: infra-vl
   sourceRef:
     kind: GitRepository
     name: flux-system

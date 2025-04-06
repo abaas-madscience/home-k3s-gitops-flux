@@ -1,4 +1,3 @@
-# infrastructure/rbac/helm-controller-monitoring-crds.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:

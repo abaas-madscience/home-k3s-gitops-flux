@@ -79,6 +79,10 @@ flux bootstrap github \
   ```bash
   flux get kustomizations -A -w
   ```
+- **Check Stateful sets: **
+  ```bash
+    kubectl describe statefulset monitoring-infra-victoria-logs-victoria-logs-single-server -n monitoring
+  ```
 
 - **Reconcile:**
   ```bash

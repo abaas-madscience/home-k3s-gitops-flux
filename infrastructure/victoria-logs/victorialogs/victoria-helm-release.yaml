@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: infra-victoria-logs
+  name: infra-vl
   namespace: monitoring
 spec:
   interval: 5m
@@ -15,8 +15,8 @@ spec:
         name: infra-victoria-logs
         namespace: flux-system
   values:
-    fullnameOverride: victoria-logs  
-    nameOverride: victoria-logs
+    fullnameOverride: vl 
+    nameOverride: vl
     statefulset:
       name: vl 
     persistence:
