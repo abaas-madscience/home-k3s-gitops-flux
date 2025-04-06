@@ -4,7 +4,7 @@ resources:
   - cert-manager-crds-kustomization.yaml
   - cert-manager-app-kustomization.yaml
   - infra-metallb-crds-kustomization.yaml
-  - infra-metallb-crds-kustomization.yaml
+  - infra-metallb-kustomization.yaml
   - ../../infrastructure/traefik
   - ../../infrastructure/rancher
   - sealed-secrets-kustomization.yaml
