@@ -3,7 +3,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: grafana
-  namespace: monitoring
+  namespace: flux-system
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
