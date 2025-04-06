@@ -8,7 +8,7 @@ spec:
   path: ./infrastructure/node-exporter
   prune: true
   dependsOn:
-    - name: infra-victoria-metrics
+    - name: infra-vm
   sourceRef:
     kind: GitRepository
     name: flux-system
