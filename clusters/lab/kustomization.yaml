@@ -12,10 +12,10 @@ resources:
 #  - infra-longhorn-kustomization.yaml
   - ../../infrastructure/longhorn
   - ../../infrastructure/node-exporter
-  - ../../infrastructure/victoria-metrics
   - ../../infrastructure/grafana
 #  - ../../apps/system/flux-capacitor
   - apps-whoami-kustomization.yaml
   - apps-http-echo-kustomization.yaml
   - apps-services-renovate-kustomization.yaml
   - apps-monitoring-kustomization.yaml
+  - ../../infrastructure/victoria-metrics

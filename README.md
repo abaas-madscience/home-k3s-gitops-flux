@@ -38,13 +38,26 @@ Here's how the repository is organized:
 
 ## 🛠️ Setting Up Flux
 
-### 1️⃣ Generate PAT Token in GitHub
+### 1 Generate PAT Token in GitHub
 
 Generate a Personal Access Token (PAT) here: [GitHub Tokens](https://github.com/settings/tokens)
 
-### 2️⃣ Automate Setup with Ansible
+### 2 Automate Setup with Ansible
 
 The setup is automated using Ansible after Terraform provisions the cluster. Check out my other repositories for details on this process.
+
+### 3 Bootstap Flux 
+
+```bash
+flux bootstrap github \
+  --owner=abaas-madsciende \
+  --repository=home-k3s-gitops-flux \
+  --branch=main \
+  --path=clusters/lab \
+  --personal \
+  --token-auth
+
+```
 
 ---
 
