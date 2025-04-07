@@ -3,6 +3,5 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - helm-repository.yaml
+  - configmap-values.yaml
   - helm-release.yaml
-  - values-configmap.yaml
-  - ingressroute.yaml

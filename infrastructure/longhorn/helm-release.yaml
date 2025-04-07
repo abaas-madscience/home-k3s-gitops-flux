@@ -4,12 +4,13 @@ metadata:
   name: infra-longhorn
   namespace: flux-system
 spec:
-  targetNamespace: infra-longhorn
   interval: 5m
+  releaseName: longhorn
+  targetNamespace: infra-longhorn
   chart:
     spec:
       chart: longhorn
-      version: 1.6.1 # or latest
+      version: 1.6.1
       sourceRef:
         kind: HelmRepository
         name: infra-longhorn
@@ -17,6 +18,7 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: longhorn-values
+      valuesKey: values.yaml
   install:
     createNamespace: true
     remediation:

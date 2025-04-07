@@ -16,7 +16,7 @@ sudo rm -rf /etc/systemd/system/longhorn-manager.service || true
 
 echo "🚀 Installing fresh K3s..."
 # Reinstall K3s
-curl -sfL https://get.k3s.io | sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik --disable servicelb --disable local-storage" sh -
 
 echo "📂 Setting up kubeconfig..."
 mkdir -p ~/.kube
