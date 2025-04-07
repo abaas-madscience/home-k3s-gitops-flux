@@ -12,6 +12,10 @@ data:
       replicaAutoBalance: best-effort
       defaultLonghornStaticStorageClass: longhorn
 
+    longhornManager:
+      nodeSelector:
+        kubernetes.io/hostname: lab
+
     longhornUI:
       enabled: false
 
