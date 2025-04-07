@@ -8,11 +8,14 @@ data:
     defaultSettings:
       defaultReplicaCount: 1
       defaultDataPath: /var/lib/longhorn
-      createDefaultDiskLabeledNodes: true
       replicaAutoBalance: best-effort
       defaultLonghornStaticStorageClass: longhorn
 
     longhornManager:
+      nodeSelector:
+        kubernetes.io/hostname: lab
+
+    longhornDriver:
       nodeSelector:
         kubernetes.io/hostname: lab
 
