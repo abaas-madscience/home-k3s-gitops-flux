@@ -5,4 +5,4 @@ metadata:
   namespace: infra-metallb
 spec:
   addresses:
-    - 192.168.178.201-192.168.178.230
+    - 192.168.178.2-192.168.178.50
