@@ -4,8 +4,8 @@ set -euo pipefail
 NAMESPACE="renovate"
 SECRET_NAME="renovate-token"
 SEALED_FILE="apps/services/renovate/secret.yaml"
-CONTROLLER_NAME="kube-system-sealed-secrets"
-CONTROLLER_NAMESPACE="kube-system"
+CONTROLLER_NAME="flux-system-sealed-secrets"
+CONTROLLER_NAMESPACE="flux-system"
 
 echo "🔐 Paste your new GitHub PAT for Renovate (scopes: repo, workflow):"
 read -rs TOKEN
