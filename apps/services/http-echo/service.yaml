@@ -4,7 +4,7 @@ metadata:
   name: apps-http-echo
 spec:
   selector:
-    app: http-echo
+    app: apps-http-echo
   ports:
     - port: 80
       targetPort: 5678
