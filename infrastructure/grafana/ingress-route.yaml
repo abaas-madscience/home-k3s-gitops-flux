@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: grafana.svc.lab.local
+    - host: kube-system-infra-traefik
       http:
         paths:
           - path: /
