@@ -15,6 +15,8 @@ spec:
         name: grafana
         namespace: flux-system
   values:
+    extraArgs:
+      - -log.level=debug
     config:
       clients:
         - url: http://monitoring-infra-vl-victoria-logs-single-server:9428/insert/loki/api/v1/push
