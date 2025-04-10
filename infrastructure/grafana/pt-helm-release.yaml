@@ -17,14 +17,13 @@ spec:
   values:
     extraArgs:
       - -log.level=debug
-    configmap:
-      enabled: true
-      content:
-        clients:
-          - url: http://monitoring-infra-vl-victoria-logs-single-server:9428/insert/loki/api/v1/push
-        positions:
-          filename: /run/promtail/positions.yaml
-        scrape_configs:
+    config:
+      logLevel: debug
+      serverPort: 3101
+      lokiAddress: http://monitoring-infra-vl-victoria-logs-single-server:9428/insert/loki/api/v1/push
+
+      snippets:
+        scrapeConfigs: |
           - job_name: kubernetes-pods
             pipeline_stages:
               - static_labels:
@@ -49,3 +48,17 @@ spec:
                   - __meta_kubernetes_pod_uid
                 target_label: __path__
                 replacement: /var/log/pods/*$1/*.log
+
+      file: |
+        server:
+          http_listen_port: {{ .Values.config.serverPort }}
+          log_level: {{ .Values.config.logLevel }}
+
+        clients:
+          - url: {{ .Values.config.lokiAddress }}
+
+        positions:
+          filename: /run/promtail/positions.yaml
+
+        scrape_configs:
+        {{- tpl .Values.config.snippets.scrapeConfigs . | nindent 2 }}
