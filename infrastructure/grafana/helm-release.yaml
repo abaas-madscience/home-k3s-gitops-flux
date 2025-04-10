@@ -18,7 +18,9 @@ spec:
     adminUser: admin
     adminPassword: admin
     envFromSecrets: [] 
-  
+    env:
+      GF_INSTALL_PLUGINS: "victoriametrics-logs-datasource"
+
     service:
       type: ClusterIP
       port: 80
