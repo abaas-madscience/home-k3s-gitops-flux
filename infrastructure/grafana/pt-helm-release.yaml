@@ -55,6 +55,16 @@ spec:
             pipeline_stages:
               - static_labels:
                   log_type: raw
+            relabel_configs:
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_pod_container_name
+                  - __meta_kubernetes_pod_name
+                  - __meta_kubernetes_namespace
+                separator: "_"
+                target_label: __path__
+                replacement: /var/log/containers/$1_$2_$3-*.log
+
 
 
       file: |
