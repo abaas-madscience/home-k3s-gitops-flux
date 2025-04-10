@@ -15,6 +15,14 @@ spec:
         name: grafana
         namespace: flux-system
   values:
+    extraVolumes:
+      - name: varlogpods
+        hostPath:
+          path: /var/log/pods
+    extraVolumeMounts:
+      - name: varlogpods
+        mountPath: /var/log/pods
+        readOnly: true
     config:
       logLevel: debug
       serverPort: 3101
