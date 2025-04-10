@@ -29,24 +29,35 @@ spec:
             kubernetes_sd_configs:
               - role: pod
             relabel_configs:
+              # 🚫 Skip Promtail logs (avoid logloop)
               - source_labels: [__meta_kubernetes_pod_name]
                 regex: monitoring-promtail.*
                 action: drop
+
+              # 🚫 Skip init containers (they’re dead anyway)
+              - source_labels: [__meta_kubernetes_pod_container_init]
+                regex: "true"
+                action: drop
+
+              # ✅ Require annotation from either promtail or prometheus
               - source_labels: [__meta_kubernetes_pod_annotation_promtail_io_scrape]
                 action: keep
                 regex: true
               - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
                 action: keep
                 regex: true
+
+              # 🏷️ Add standard labels
               - source_labels: [__meta_kubernetes_namespace]
                 target_label: namespace
               - source_labels: [__meta_kubernetes_pod_name]
                 target_label: pod
               - source_labels: [__meta_kubernetes_pod_container_name]
                 target_label: container
+
+              # 📂 Proper path to logs
               - action: replace
-                source_labels:
-                  - __meta_kubernetes_pod_uid
+                source_labels: [__meta_kubernetes_pod_uid]
                 target_label: __path__
                 replacement: /var/log/pods/*$1/*/*.log
 
