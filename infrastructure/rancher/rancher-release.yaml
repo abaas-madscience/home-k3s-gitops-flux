@@ -4,8 +4,8 @@ metadata:
   name: rancher
   namespace: flux-system
 spec:
-  interval: 24h
-  suspend: true # SUSPENDED DUE TO VERSION ISSUES
+  interval: 5m
+  suspend: false 
   targetNamespace: cattle-system
   install:
     createNamespace: true
@@ -19,9 +19,9 @@ spec:
         name: rancher
         namespace: flux-system
   values:
-    hostname: rancher.lab.local
+    hostname: rancher.svc.lab.local
     ingress:
       enabled: true
-      ingressClassName: traefik
+      ingressClassName: kube-system-infra-traefik
       tls:
         source: self-signed

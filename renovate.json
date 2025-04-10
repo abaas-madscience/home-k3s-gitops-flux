@@ -18,9 +18,9 @@
         "flux-update"
       ],
       "enabled": true,
-      "matchPackageNames": [
-        "/^fluxcd/",
-        "/^ghcr.io/fluxcd/"
+      "matchPackagePatterns": [
+        "^fluxcd",
+        "^ghcr.io/fluxcd"
       ]
     }
   ],
