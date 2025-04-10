@@ -48,10 +48,6 @@ spec:
             pipeline_stages:
               - static_labels:
                   log_type: raw
-              - timestamp:
-                  source: time
-                  format: RFC3339
-                  fallback_to_current_time: true
 
           - job_name: kubernetes-pods
             kubernetes_sd_configs:
