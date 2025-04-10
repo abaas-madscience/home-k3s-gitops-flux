@@ -61,15 +61,14 @@ spec:
               - source_labels: [__meta_kubernetes_pod_container_name]
                 target_label: container
 
-              # NEW: Path for containerd logs
               - action: replace
                 source_labels:
-                  - __meta_kubernetes_pod_container_name
                   - __meta_kubernetes_pod_name
                   - __meta_kubernetes_namespace
-                separator: "-"
+                  - __meta_kubernetes_pod_container_name
+                separator: "_"
                 target_label: __path__
-                replacement: /var/log/containers/$1_$2_$3-*.log
+                replacement: /var/log/containers/$1_$2_$3*.log
 
       file: |
         server:
