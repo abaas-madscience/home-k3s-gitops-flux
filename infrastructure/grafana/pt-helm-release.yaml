@@ -44,6 +44,11 @@ spec:
                 labels:
                   job: varlogs
                   __path__: /var/log/containers/*.log
+            pipeline_stages:
+              - static_labels:
+                  log_type: raw
+              - timestamp:
+                  fallback_to_current_time: true
 
           - job_name: kubernetes-pods
             kubernetes_sd_configs:
@@ -51,6 +56,9 @@ spec:
             pipeline_stages:
               - static_labels:
                   log_type: raw
+              - timestamp:
+                  fallback_to_current_time: true
+
 
       file: |
         server:
