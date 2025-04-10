@@ -12,7 +12,6 @@ resources:
   - infra-node-exporter.yaml
   - infra-sealed-secrets.yaml
   - infra-grafana.yaml
-  - infra-rancher.yaml
   - apps-whoami.yaml
   - apps-http-echo.yaml
   - apps-services-renovate.yaml
