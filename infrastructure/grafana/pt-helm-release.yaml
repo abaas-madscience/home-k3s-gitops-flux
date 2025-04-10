@@ -44,10 +44,12 @@ spec:
                 labels:
                   job: varlogs
                   __path__: /var/log/containers/*.log
+
             pipeline_stages:
               - static_labels:
                   log_type: raw
               - timestamp:
+                  source: time
                   fallback_to_current_time: true
 
           - job_name: kubernetes-pods
