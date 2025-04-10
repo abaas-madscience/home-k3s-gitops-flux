@@ -17,43 +17,35 @@ spec:
   values:
     extraArgs:
       - -log.level=debug
-    config:
-      clients:
-        - url: http://monitoring-infra-vl-victoria-logs-single-server:9428/insert/loki/api/v1/push
-      positions:
-        filename: /run/promtail/positions.yaml
-      scrape_configs:
-        - job_name: kubernetes-pods
-
-          pipeline_stages:
-            - static_labels:
-                log_type: raw
-
-          kubernetes_sd_configs:
-            - role: pod
-
-          relabel_configs:
-            # 🚫 Drop Promtail's own logs to prevent feedback loop
-            - source_labels: [__meta_kubernetes_pod_name]
-              regex: monitoring-promtail.*
-              action: drop
-
-            # ✅ Allow only pods with annotation
-            - source_labels: [__meta_kubernetes_pod_annotation_promtail_io_scrape]
-              action: keep
-              regex: true
-
-            # 🏷️ Add useful labels
-            - source_labels: [__meta_kubernetes_namespace]
-              target_label: namespace
-            - source_labels: [__meta_kubernetes_pod_name]
-              target_label: pod
-            - source_labels: [__meta_kubernetes_pod_container_name]
-              target_label: container
-
-            # 🔍 Set path to log file
-            - action: replace
-              source_labels:
-                - __meta_kubernetes_pod_uid
-              target_label: __path__
-              replacement: /var/log/pods/*$1/*.log
+    configmap:
+      enabled: true
+      content:
+        clients:
+          - url: http://monitoring-infra-vl-victoria-logs-single-server:9428/insert/loki/api/v1/push
+        positions:
+          filename: /run/promtail/positions.yaml
+        scrape_configs:
+          - job_name: kubernetes-pods
+            pipeline_stages:
+              - static_labels:
+                  log_type: raw
+            kubernetes_sd_configs:
+              - role: pod
+            relabel_configs:
+              - source_labels: [__meta_kubernetes_pod_name]
+                regex: monitoring-promtail.*
+                action: drop
+              - source_labels: [__meta_kubernetes_pod_annotation_promtail_io_scrape]
+                action: keep
+                regex: true
+              - source_labels: [__meta_kubernetes_namespace]
+                target_label: namespace
+              - source_labels: [__meta_kubernetes_pod_name]
+                target_label: pod
+              - source_labels: [__meta_kubernetes_pod_container_name]
+                target_label: container
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_pod_uid
+                target_label: __path__
+                replacement: /var/log/pods/*$1/*.log
