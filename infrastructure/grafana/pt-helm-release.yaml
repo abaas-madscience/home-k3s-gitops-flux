@@ -26,30 +26,34 @@ spec:
         - job_name: kubernetes-pods
 
           pipeline_stages:
-            - match:
-                selector: '{namespace=~".+"}'
-                stages:
-                  - regex:
-                      expression: '^(?P<time>.+) (?P<level>\w+).*$'
-                  - timestamp:
-                      source: time
-                      format: RFC3339
+            - static_labels:
+                log_type: raw
+
           kubernetes_sd_configs:
             - role: pod
+
           relabel_configs:
-            - source_labels: [__meta_kubernetes_pod_node_name]
-              target_label: host
+            # 🚫 Drop Promtail's own logs to prevent feedback loop
+            - source_labels: [__meta_kubernetes_pod_name]
+              regex: monitoring-promtail.*
+              action: drop
+
+            # ✅ Allow only pods with annotation
             - source_labels: [__meta_kubernetes_pod_annotation_promtail_io_scrape]
               action: keep
               regex: true
+
+            # 🏷️ Add useful labels
             - source_labels: [__meta_kubernetes_namespace]
               target_label: namespace
             - source_labels: [__meta_kubernetes_pod_name]
               target_label: pod
             - source_labels: [__meta_kubernetes_pod_container_name]
               target_label: container
+
+            # 🔍 Set path to log file
             - action: replace
-              replacement: /var/log/pods/*$1/*.log
               source_labels:
                 - __meta_kubernetes_pod_uid
-              target_label: path
+              target_label: __path__
+              replacement: /var/log/pods/*$1/*.log
