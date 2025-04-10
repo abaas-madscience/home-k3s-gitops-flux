@@ -59,8 +59,6 @@ spec:
             pipeline_stages:
               - static_labels:
                   log_type: raw
-              - timestamp:
-                  fallback_to_current_time: true
 
 
       file: |
