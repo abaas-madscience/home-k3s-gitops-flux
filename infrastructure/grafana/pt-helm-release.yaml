@@ -16,13 +16,18 @@ spec:
         namespace: flux-system
   values:
     extraVolumes:
-      - name: varlogpods
+      - name: varlogcontainers
         hostPath:
-          path: /var/log/pods
+          path: /var/log/containers
     extraVolumeMounts:
-      - name: varlogpods
-        mountPath: /var/log/pods
+      - name: varlogcontainers
+        mountPath: /var/log/containers
         readOnly: true
+
+    securityContext:
+      runAsUser: 0
+      privileged: true
+
     config:
       logLevel: debug
       serverPort: 3101
@@ -37,25 +42,18 @@ spec:
             kubernetes_sd_configs:
               - role: pod
             relabel_configs:
-              # 🚫 Skip Promtail logs
               - source_labels: [__meta_kubernetes_pod_name]
                 regex: monitoring-promtail.*
                 action: drop
-
-              # 🚫 Skip init containers
               - source_labels: [__meta_kubernetes_pod_container_init]
                 regex: "true"
                 action: drop
-
-              # ✅ Require annotation from promtail or prometheus
               - source_labels: [__meta_kubernetes_pod_annotation_promtail_io_scrape]
                 action: keep
                 regex: true
               - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
                 action: keep
                 regex: true
-
-              # 🏷️ Add standard labels
               - source_labels: [__meta_kubernetes_namespace]
                 target_label: namespace
               - source_labels: [__meta_kubernetes_pod_name]
@@ -63,16 +61,15 @@ spec:
               - source_labels: [__meta_kubernetes_pod_container_name]
                 target_label: container
 
-              # 📂 Correct file path matching real directory structure
+              # NEW: Path for containerd logs
               - action: replace
                 source_labels:
-                  - __meta_kubernetes_namespace
-                  - __meta_kubernetes_pod_name
-                  - __meta_kubernetes_pod_uid
                   - __meta_kubernetes_pod_container_name
-                separator: _
+                  - __meta_kubernetes_pod_name
+                  - __meta_kubernetes_namespace
+                separator: "-"
                 target_label: __path__
-                replacement: /var/log/pods/$1_$2_$3/$4/*.log
+                replacement: /var/log/containers/$1_$2_$3-*.log
 
       file: |
         server:
