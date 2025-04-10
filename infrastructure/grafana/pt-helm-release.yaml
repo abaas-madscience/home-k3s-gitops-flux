@@ -15,15 +15,11 @@ spec:
         name: grafana
         namespace: flux-system
   values:
-#    extraArgs:
-#      - -log.level=debug
-
     config:
       clients:
         - url: http://monitoring-infra-vl-victoria-logs-single-server:9428/insert/loki/api/v1/push
       positions:
         filename: /run/promtail/positions.yaml
-
       scrape_configs:
         - job_name: kubernetes-pods
           pipeline_stages:
@@ -32,7 +28,7 @@ spec:
             - role: pod
           relabel_configs:
             - source_labels: [__meta_kubernetes_pod_node_name]
-              target_label: __host__
+              target_label: host
             - source_labels: [__meta_kubernetes_pod_annotation_promtail_io_scrape]
               action: keep
               regex: true
@@ -46,5 +42,4 @@ spec:
               replacement: /var/log/pods/*$1/*.log
               source_labels:
                 - __meta_kubernetes_pod_uid
-              target_label: __path__
-
+              target_label: path
