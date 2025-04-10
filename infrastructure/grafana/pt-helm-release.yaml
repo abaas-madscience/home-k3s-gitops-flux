@@ -29,17 +29,17 @@ spec:
             kubernetes_sd_configs:
               - role: pod
             relabel_configs:
-              # 🚫 Skip Promtail logs (avoid logloop)
+              # 🚫 Skip Promtail logs
               - source_labels: [__meta_kubernetes_pod_name]
                 regex: monitoring-promtail.*
                 action: drop
 
-              # 🚫 Skip init containers (they’re dead anyway)
+              # 🚫 Skip init containers
               - source_labels: [__meta_kubernetes_pod_container_init]
                 regex: "true"
                 action: drop
 
-              # ✅ Require annotation from either promtail or prometheus
+              # ✅ Require annotation from promtail or prometheus
               - source_labels: [__meta_kubernetes_pod_annotation_promtail_io_scrape]
                 action: keep
                 regex: true
@@ -55,11 +55,16 @@ spec:
               - source_labels: [__meta_kubernetes_pod_container_name]
                 target_label: container
 
-              # 📂 Proper path to logs
+              # 📂 Correct file path matching real directory structure
               - action: replace
-                source_labels: [__meta_kubernetes_pod_uid]
+                source_labels:
+                  - __meta_kubernetes_namespace
+                  - __meta_kubernetes_pod_name
+                  - __meta_kubernetes_pod_uid
+                  - __meta_kubernetes_pod_container_name
+                separator: _
                 target_label: __path__
-                replacement: /var/log/pods/*$1/*/*.log
+                replacement: /var/log/pods/$1_$2_$3/$4/*.log
 
       file: |
         server:
