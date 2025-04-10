@@ -45,42 +45,6 @@ spec:
                   job: varlogs
                   __path__: /var/log/containers/*.log
 
-          - job_name: kubernetes-pods
-            kubernetes_sd_configs:
-              - role: pod
-            pipeline_stages:
-              - static_labels:
-                  log_type: raw
-            relabel_configs:
-              - source_labels: [__meta_kubernetes_pod_name]
-                regex: monitoring-promtail.*
-                action: drop
-              - source_labels: [__meta_kubernetes_pod_container_init]
-                regex: "true"
-                action: drop
-              - source_labels: [__meta_kubernetes_pod_annotation_promtail_io_scrape]
-                action: keep
-                regex: true
-              - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
-                action: keep
-                regex: true
-              - source_labels: [__meta_kubernetes_namespace]
-                target_label: namespace
-              - source_labels: [__meta_kubernetes_pod_name]
-                target_label: pod
-              - source_labels: [__meta_kubernetes_pod_container_name]
-                target_label: container
-              - action: replace
-                source_labels:
-                  - __meta_kubernetes_pod_container_name
-                  - __meta_kubernetes_pod_name
-                  - __meta_kubernetes_namespace
-                separator: "-"
-                target_label: __path__
-                replacement: /var/log/containers/$1_$2_$3-*.log
-
-
-
       file: |
         server:
           http_listen_port: {{ .Values.config.serverPort }}
