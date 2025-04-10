@@ -15,8 +15,6 @@ spec:
         name: grafana
         namespace: flux-system
   values:
-    extraArgs:
-      - -log.level=debug
     config:
       logLevel: debug
       serverPort: 3101
