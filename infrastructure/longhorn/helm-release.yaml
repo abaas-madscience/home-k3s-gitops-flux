@@ -26,3 +26,6 @@ spec:
   upgrade:
     remediation:
       retries: 3
+  values:
+      podAnnotations:
+        promtail.io/scrape: "true"
