@@ -37,35 +37,31 @@ spec:
 
       snippets:
         scrapeConfigs: |
-          - job_name: all-containers
-            static_configs:
-              - targets:
-                  - localhost
-                labels:
-                  job: varlogs
-                  __path__: /var/log/containers/*.log
-
-            pipeline_stages:
-              - static_labels:
-                  log_type: raw
 
           - job_name: kubernetes-pods
             kubernetes_sd_configs:
               - role: pod
             pipeline_stages:
               - static_labels:
-                  log_type: raw
+                  log_type: kubernetes
             relabel_configs:
-              - action: replace
-                source_labels:
+              - source_labels:
+                  - __meta_kubernetes_pod_name
+                target_label: pod
+              - source_labels:
+                  - __meta_kubernetes_namespace
+                target_label: namespace
+              - source_labels:
                   - __meta_kubernetes_pod_container_name
+                target_label: container
+              - action: replace
+                replacement: /var/log/containers/$1_$2_$3*.log
+                separator: /
+                source_labels:
                   - __meta_kubernetes_pod_name
                   - __meta_kubernetes_namespace
-                separator: "_"
+                  - __meta_kubernetes_pod_container_name
                 target_label: __path__
-                replacement: /var/log/containers/$1_$2_$3-*.log
-
-
 
       file: |
         server:
