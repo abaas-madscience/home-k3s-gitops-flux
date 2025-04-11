@@ -32,5 +32,4 @@ spec:
         memory: 128Mi
     server:
       extraArgs:
-        insert.enableLokiProxy: true
         loggerLevel: DEBUG
