@@ -42,9 +42,7 @@
   "helm": {
     "fileMatch": [
       "clusters/.+\\.ya?ml$",
-      "infrastructure/.+/helm-release.+\\.ya?ml$",
-      "apps/.+/helmrelease.+\\.ya?ml$",
-      ".*HelmRelease.*\\.ya?ml$"
+      "infrastructure/.+/helm-release\\.ya?ml$"
     ]
   }
   
