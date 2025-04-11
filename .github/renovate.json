@@ -1,6 +1,10 @@
 {
-  "extends": ["config:recommended"],
-  "enabledManagers": ["kubernetes"],
+  "extends": [
+    "config:recommended"
+  ],
+  "enabledManagers": [
+    "kubernetes"
+  ],
   "kubernetes": {
     "fileMatch": [
       "clusters/.+\\.ya?ml$",
@@ -9,23 +13,43 @@
   },
   "packageRules": [
     {
-      "matchDatasources": ["helm", "docker"],
-      "labels": ["flux-update"],
+      "matchDatasources": [
+        "helm",
+        "docker"
+      ],
+      "labels": [
+        "flux-update"
+      ],
       "enabled": true,
-      "matchPackagePatterns": ["^fluxcd", "^ghcr.io/fluxcd"]
+      "matchPackageNames": [
+        "/^fluxcd/",
+        "/^ghcr.io/fluxcd/"
+      ]
     },
     {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["major", "minor", "patch"],
+      "matchDatasources": [
+        "helm"
+      ],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch"
+      ],
       "enabled": true,
-      "labels": ["helm-update"]
+      "labels": [
+        "helm-update"
+      ]
     }
   ],
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["flux-system/gotk-components.yaml"],
-      "matchStrings": ["image: fluxcd/([^:]+):(?<currentValue>[^\\s]+)"],
+      "fileMatch": [
+        "flux-system/gotk-components.yaml"
+      ],
+      "matchStrings": [
+        "image: fluxcd/([^:]+):(?<currentValue>[^\\s]+)"
+      ],
       "depNameTemplate": "fluxcd/{{{match1}}}",
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
