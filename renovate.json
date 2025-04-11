@@ -22,6 +22,12 @@
         "^fluxcd",
         "^ghcr.io/fluxcd"
       ]
+    },
+    {
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "enabled": true,
+      "labels": ["helm-update"]
     }
   ],
   "customManagers": [
