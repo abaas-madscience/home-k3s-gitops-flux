@@ -4,7 +4,7 @@ metadata:
   name: infra-vl
   namespace: flux-system
 spec:
-  interval: 5m
+  interval: 1m
   targetNamespace: monitoring
   chart:
     spec:
@@ -30,3 +30,6 @@ spec:
       requests:
         cpu: 100m
         memory: 128Mi
+    server:
+      extraArgs:
+        loggerLevel: INFO
