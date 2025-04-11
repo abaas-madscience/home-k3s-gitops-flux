@@ -32,3 +32,4 @@ spec:
         memory: 128Mi
     extraArgs:
       - -insert.enableLokiProxy=true
+      - -loggerLevel=DEBUG
