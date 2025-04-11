@@ -30,6 +30,7 @@ spec:
       requests:
         cpu: 100m
         memory: 128Mi
-    extraArgs:
-      - -insert.enableLokiProxy=true
-      - -loggerLevel=DEBUG
+    server:
+      extraArgs:
+        insert.enableLokiProxy: true
+        loggerLevel: DEBUG
