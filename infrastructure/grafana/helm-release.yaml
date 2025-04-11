@@ -38,7 +38,7 @@ spec:
         datasources:
           - name: VictoriaLogs
             type: victoriametrics-logs-datasource
-            url: http://monitoring-infra-vl-victoria-logs-single-server:9428
+            url: http://vl-server:9428/insert/loki/api/v1/push
             access: proxy
             jsonData:
               maxLines: 1000
