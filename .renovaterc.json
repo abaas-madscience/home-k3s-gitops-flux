@@ -1,7 +1,6 @@
 {
-  "extends": [
-    "config:recommended"
-  ],
+  "extends": ["config:recommended"],
+  "enabledManagers": ["kubernetes", "helm"],
   "kubernetes": {
     "fileMatch": [
       "clusters/.+\\.yaml$",
@@ -14,9 +13,7 @@
         "helm",
         "docker"
       ],
-      "labels": [
-        "flux-update"
-      ],
+      "labels": ["flux-update"],
       "enabled": true,
       "matchPackagePatterns": [
         "^fluxcd",
@@ -33,9 +30,7 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": [
-        "flux-system/gotk-components.yaml"
-      ],
+      "fileMatch": ["flux-system/gotk-components.yaml"],
       "matchStrings": [
         "image: fluxcd/([^:]+):(?<currentValue>[^\\s]+)"
       ],
