@@ -33,8 +33,8 @@ spec:
     config:
       logLevel: debug
       serverPort: 3101
-      lokiAddress: http://monitoring-infra-vl-victoria-logs-single-server:9428/insert/loki/api/v1/push
-
+      #lokiAddress: http://monitoring-infra-vl-victoria-logs-single-server:9428/insert/loki/api/v1/push
+      lokiAddress: http://monitoring-infra-vl-victoria-logs-single-server.monitoring.svc.cluster.local:9428/insert/loki/api/v1/push
       snippets:
         scrapeConfigs: |
 
