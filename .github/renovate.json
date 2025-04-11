@@ -1,13 +1,49 @@
 {
-  "extends": [
-    "config:recommended"
-  ],
-  "enabledManagers": [
-    "helm-values"
-  ],
-  "helm-values": {
+  "extends": ["config:recommended"],
+  "enabledManagers": ["kubernetes", "helm"],
+  "kubernetes": {
     "fileMatch": [
-      ".*\\.yaml$"
+      "clusters/.+\\.yaml$",
+      "infrastructure/flux/.+\\.yaml$"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "helm",
+        "docker"
+      ],
+      "labels": ["flux-update"],
+      "enabled": true,
+      "matchPackagePatterns": [
+        "^fluxcd",
+        "^ghcr.io/fluxcd"
+      ]
+    },
+    {
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "enabled": true,
+      "labels": ["helm-update"]
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["flux-system/gotk-components.yaml"],
+      "matchStrings": [
+        "image: fluxcd/([^:]+):(?<currentValue>[^\\s]+)"
+      ],
+      "depNameTemplate": "fluxcd/{{{match1}}}",
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
+    }
+  ],
+  "helm": {
+    "fileMatch": [
+      "clusters/.+\\.ya?ml$",
+      "infrastructure/.+/helm-release\\.ya?ml$"
     ]
   }
+  
 }
