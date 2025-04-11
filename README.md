@@ -51,9 +51,20 @@ flux bootstrap github \
   ```bash
   flux get kustomizations -A -w
   ```
-- **Check Stateful sets: **
+
+- **Check Stateful sets:**
   ```bash
-    kubectl describe statefulset monitoring-infra-victoria-logs-victoria-logs-single-server -n monitoring
+  kubectl describe statefulset monitoring-infra-victoria-logs-victoria-logs-single-server -n monitoring
+  ```
+
+- **Run a curl pod in a namespace**
+  ```
+    kubectl run curlme -n monitoring --rm -it --image=curlimages/curl -- sh
+  ```
+
+- **Run a BusyBox Pod for Testing:**
+  ```bash
+  kubectl run -it --rm --restart=Never busybox -n flux-system --image=busybox
   ```
 
 - **Reconcile:**
@@ -67,7 +78,7 @@ flux bootstrap github \
   ```
 
 - **Check Controller Logs:**
-  ```bash
+    ```bash
   kubectl -n flux-system logs deployment/<controller-name>
   ```
 
@@ -108,16 +119,6 @@ flux bootstrap github \
 - **Alias for Flux Debugging:**
   ```bash
   alias fluxdebug='k9s -n flux-system'
-  ```
-
-- **Curl Pod for Testing:**
-  ```bash
-  kubectl run curlpod --rm -it --image=curlimages/curl --restart=Never -- sh
-  ```
-
-- **BusyBox Pod for Testing:**
-  ```bash
-  kubectl run -it --rm --restart=Never busybox -n flux-system --image=busybox
   ```
 
 ---
