@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: promtail
-      version: 6.15.0
+      version: 6.16.6
       sourceRef:
         kind: HelmRepository
         name: grafana
@@ -31,7 +31,7 @@ spec:
         readOnly: true
 
     config:
-      logLevel: debug
+      logLevel: error
       serverPort: 3101
       lokiAddress: http://vl-server:9428/insert/loki/api/v1/push
       snippets:
@@ -41,6 +41,15 @@ spec:
             kubernetes_sd_configs:
               - role: pod
             pipeline_stages:
+              - match:
+                  selector: '{log_type="kubernetes"}'
+                  stages:
+                    - regex:
+                        expression: '(?i)\\b(error|panic|fatal|exception|fail|crit)\\b'
+                    - drop:
+                        source: regex
+                        expression: "^$"
+                        drop_counter_reason: "non_error_logs"
               - static_labels:
                   log_type: kubernetes
             relabel_configs:
