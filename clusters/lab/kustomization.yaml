@@ -1,8 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - infra-cert-manager-crds.yaml
-  - infra-cert-manager-app.yaml
+  - infra-certmgr-crds.yaml
+  - infra-certmgr.yaml
   - infra-metallb-crds.yaml
   - infra-metallb.yaml
   - infra-traefik.yaml
