@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: http-echo-tls
+  namespace: apps-http-echo
+spec:
+  secretName: http-echo-tls
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  subject:
+    organizations:
+      - CyberCats
+  commonName: http-echo.svc.lab.local
+  dnsNames:
+    - http-echo.svc.lab.local
+  issuerRef:
+    name: selfsigned-cluster-issuer
+    kind: ClusterIssuer

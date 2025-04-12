@@ -5,7 +5,7 @@ metadata:
   namespace: apps-http-echo
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
     - match: Host(`echo.svc.lab.local`)
       kind: Rule
