@@ -32,4 +32,5 @@ spec:
         memory: 128Mi
     server:
       extraArgs:
-        loggerLevel: INFO
+        loggerLevel: ERROR
+        retentionPeriod: 30d

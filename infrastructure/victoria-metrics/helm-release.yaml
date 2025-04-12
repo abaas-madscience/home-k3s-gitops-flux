@@ -18,10 +18,11 @@ spec:
     server:
       extraArgs:
         httpListenAddr: ":8428"
-        loggerLevel: "INFO"
+        loggerLevel: ERROR
         envflag.enable: "true"
         promscrape.config: "/config/prometheus.yml"
-
+        retentionPeriod: "30d"
+        
       extraVolumeMounts:
         - name: scrape-config
           mountPath: /config
