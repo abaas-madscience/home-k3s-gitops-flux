@@ -13,7 +13,7 @@ resources:
   - infra-sealed-secrets.yaml
   - infra-grafana.yaml
   - infra-promtail.yaml
-  - infra-trivvy.yaml
+  - infra-trivy.yaml
   - apps-whoami.yaml
   - apps-http-echo.yaml
   - apps-services-renovate.yaml

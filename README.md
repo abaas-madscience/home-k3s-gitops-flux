@@ -1,5 +1,7 @@
 # 🚀 home-k3s-gitops-flux
 
+**This repo is not activaly maintained anymore, I switched to native kubernetes and this can be found in my repo's under home-k8s-gitops-flux**
+
 Welcome to the **GitOps** repository for managing your Kubernetes cluster with **Flux**! 🎉
 
 This repository is a living and breathing setup for my home network, evolving over time. Take what you can and enjoy the journey! 🌟
